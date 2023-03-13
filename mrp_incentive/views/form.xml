@@ -1,0 +1,18 @@
+<odoo>
+    <record id="mrp_incentive_inherited" model="ir.ui.view">
+        <field name="name">Mrp Work Center Form</field>
+        <field name="model">mrp.routing.workcenter</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+        <field name="arch" type="xml">
+               <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                   <page name="Employees(Incentive)" string="Employees(Incentive)">
+                       <field name="employ_ids"/>
+                   </page>
+            </xpath>
+            <xpath expr="//field[@name='bom_id']" position="after">
+                <field name="target"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

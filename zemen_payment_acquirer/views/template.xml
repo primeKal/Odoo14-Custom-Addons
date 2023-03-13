@@ -1,0 +1,12 @@
+<odoo>
+    <template id="zemen_form" name="ZEMEN Payment Form">
+        <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+        <input type="hidden" name="app_order_id" t-att-value="app_order_id"/>
+
+        <input type="hidden" name="totalAmount" t-att-value="totalAmount"/>
+        <input type="hidden" name="returnUrl" t-att-value="returnUrl"/>
+        <input type="hidden" name="phone" t-att-value="phone"/>
+        <input type="hidden" name="zemen_app_id" t-att-value="zemen_app_id"/>
+<!--        <input type="hidden" name="return_url" t-att-value="return_url"/>-->
+    </template>
+</odoo>

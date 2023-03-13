@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="wevsnippet" inherit_id="website.snippet_options">
+        <xpath expr="//div" position="after">
+            <div data-selector="section">
+                <div data-js="graph_method" data-selector=".custom_snippet"></div>
+                <we-row string="Padding">
+                    <we-input t-att-data-apply-to="apply_to" data-css-property="padding" data-unit="px"
+                        data-select-style="0" />
+                </we-row>
+                <label for="days">Select days :</label>
+                <we-select string="Select Days">
+                    <we-button data-select-class="opt-1">Last 30 days</we-button>
+                    <we-button data-select-class="opt-2">Last 60 days</we-button>
+                    <we-button data-select-class="opt-3">Last 60 days</we-button>
+                    <we-button data-select-class="opt-4" data-name="so_width_100">100%
+                    </we-button>
+                </we-select>
+                <label for="frequency">Frequency :</label>
+                <we-select string="Frequency">
+                    <we-button data-select-class="daily">Daily</we-button>
+                    <we-button data-select-class="weekly">Weekly</we-button>
+                    <we-button data-select-class="monthly">Montly</we-button>
+                    <we-button data-select-class="weekly">Quarterly</we-button>
+                    <we-button data-select-class="monthly">Yearly</we-button>
+                </we-select>
+            </div>
+        </xpath>
+    </template>
+</odoo>

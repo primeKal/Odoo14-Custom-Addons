@@ -1,0 +1,30 @@
+<odoo>
+    <template id="chapa_form" name="BOA Payment Form">
+        <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+        <input type="hidden" name="c_first_name" t-att-value="c_first_name"/>
+        <input type="hidden" name="c_last_name" t-att-value="c_last_name"/>
+        <input type="hidden" name="c_email" t-att-value="c_email"/>
+        <input type="hidden" name="c_phone" t-att-value="phone"/>
+        <input type="hidden" name="reference" t-att-value="reference"/>
+        <input type="hidden" name="amount" t-att-value="totalAmount"/>
+        <input type="hidden" name="boa_app_id" t-att-value="boa_app_id"/>
+        <input type="hidden" name="url" t-att-value="url"/>
+        <input type="hidden" name="app_order_id" t-att-value="app_order_id"/>
+    </template>
+    <template id="error" name="Something Went wrong">
+            <t t-call="website.layout">
+              <div id="wrap" class="flex items-center justify-center text-center" style="display:flex;justify-content:c">                  <div  class="oe_structure flex items-center justify-center text-center w-30 h-30">
+                  <div class="text-center" >
+                    <h3>Something went wrong</h3>
+                  </div>
+                  <br></br>
+                   <p>We are very sorry, but something went wrong.
+                   <br></br>
+                   Please be patient and contact support group,they will solve this for you.
+
+                    </p>
+                  </div>
+              </div>
+              </t>
+              </template>
+</odoo>

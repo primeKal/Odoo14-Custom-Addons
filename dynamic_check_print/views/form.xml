@@ -1,0 +1,117 @@
+<odoo>
+
+    <record id="dynamic_check" model="ir.actions.act_window">
+        <field name="name">Checks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">check.data</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your checks here
+            </p>
+        </field>
+    </record>
+        <act_window id="launch_check_wiz"
+                name="Select Products"
+                res_model="check.wiz"
+                view_mode="form"
+                target="new"
+                binding_model="check.data"
+    />
+
+    <menuitem
+            id="_parent_check_menu"
+            name="Checks"
+            sequence="10"/>
+    <menuitem
+            id="check_menu"
+            name="Checks"
+            parent="dynamic_check_print._parent_check_menu"
+            action="dynamic_check_print.dynamic_check"
+            sequence="10"/>
+    <record id="view_form_check_data22" model="ir.ui.view">
+        <field name="name">Check Data</field>
+        <field name="model">check.data</field>
+        <field name="arch" type="xml">
+            <form string="Check Form" create="false" >>
+                <group>
+                    <group>
+                        <field name="img" string="Check Image"/>
+                        <field name="name" string="Check Name"/>
+                        <field name="first" string="To Name"/>
+                        <field name="second" string="Amount"/>
+                        <field name="third" string="Amount Word"/>
+                        <field name="fourth" string="Date"/>
+                        <field name="tesseract_adress"/>
+                    </group>
+                    <group>
+                        <field name="first_location_x" />
+                        <field name="first_location_y" />
+                        <field name="second_location_x" />
+                        <field name="second_location_y" />
+                        <field name="third_location_x" />
+                        <field name="third_location_y" />
+                        <field name="fourth_location_x" />
+                        <field name="fourth_location_y" />
+                    </group>
+                </group>
+
+                <!-- <button type="action"
+                        class="oe_highlight"
+                        string="Launch Wiz"
+                        name="%(dynamic_check_print.launch_check_wiz)d"></button> -->
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="check_model_wizard_action" model="ir.actions.act_window">
+        <field name="name">Print Checks</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">check.wiz</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="launch_check_wiz"/>
+        <field name="target">new</field>
+    </record>
+
+      <record id="view_form_check_wiz_data" model="ir.ui.view">
+        <field name="name">Check Data</field>
+        <field name="model">check.wiz</field>
+        <field name="arch" type="xml">
+            <form string="Print Check Form">
+                    <group>
+                        <field name="check"/>
+                        <field name="var_1"/>
+                        <field name="var_2"/>
+                        <field name="var_3"/>
+                        <field name="var_4"/>
+                    </group>
+
+                <button type="object"
+                        class="oe_highlight"
+                        string="print"
+                        name="print222"></button>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_account_payment_form_inherited2222" model="ir.ui.view">
+            <field name="name">account.payment.form.inherited2222</field>
+            <field name="model">account.payment</field>
+            <field name="inherit_id" ref="account.view_account_payment_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_post']" position="before">
+                                    <button type="action"
+                        class="oe_highlight"
+                        string="Launch Wiz"
+                        name="%(dynamic_check_print.launch_check_wiz)d"></button>
+                </xpath>
+                </field>
+                </record>
+
+
+
+
+</odoo>

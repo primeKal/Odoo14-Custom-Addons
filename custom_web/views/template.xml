@@ -1,0 +1,1491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--     
+    <record id="web_menu_form1" model="website.menu">
+        <field name="name">Register</field>
+        <field name="url">/web/registerForm</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">66</field>
+
+    </record> -->
+
+    <!-- <record id="web_menu_form2" model="website.menu">
+      <field name="name">Test Page</field>
+      <field name="url">/web/signin</field>
+      <field name="parent_id" ref="website2.main_menu"/>
+      <field name="sequence">70</field>
+
+  </record> -->
+
+  <!-- <template id="my_account_link" name="Link to frontend portal" inherit_id="portal.user_dropdown">
+    <xpath expr="//*[@id='o_logout_divider']" position="before">
+        <a href="/shop" role="menuitem" class="dropdown-item">funds rising</a>
+    </xpath>
+</template> -->
+
+<!-- <a href="/page/module_name.pagename">
+            <span data-oe-model="website.menu" data-oe-id="6" data-oe-field="name" data-oe-type="char" data-oe-expression="submenu.name" data-oe-translate="1">About Us (Link Name)</span>
+        </a> -->
+
+
+
+<!-- Mentor Registeration -->  
+
+    <template id="mentor" name="Mentor register">
+      <t t-call="website.layout">
+          <div id="wrap">
+             <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Mentor Sign Up</h2>
+                <p>Fill all form field to go to next step</p>
+
+                <form id="msform"  role="form" t-attf-action="/api/mentor/register" method="POST" onsubmit="this.action = '/api/mentor/register'" enctype="multipart/form-data">
+                       <input type="hidden" name="csrf_token"
+                                 t-att-value="request.csrf_token()"/>
+                   <!-- <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/> -->
+
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+                        <li class="active" id="personal"><strong>Personal Information</strong></li>
+                        <li id="payment"><strong>Education Background</strong></li>
+                        <li  id="account"><strong>Account</strong></li>
+                        <li id="confirm"><strong>Submit</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br/>
+                    <!-- fieldsets -->
+
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 id="head_1" class="fs-title">Personal Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div>
+                             <input type="hidden" name="type" value="mentor" />
+                              
+                               <div class="row">
+                            <div class="col-10">
+                            <label  class="fieldlabels">Profile: </label>
+                            <!-- <img src ="" style=" width: 50px;
+                                                            height: 50px;display:hidden;
+                                                            border-radius: 10.3em;" id="viewImage1"/> -->
+                                                            <!-- <button class="add" id="button1" type="button">Add Photo</button> -->
+                                                            <input class="image_input" id="file-input1" type="file" name="image_1920" />
+                            
+                            </div>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-10">
+                            <label  class="fieldlabels">Full Name: *</label>
+                            <input type="text" name="name" placeholder="Full Name" id="myText" autofocus="autofocus"  required="1"/>
+                            <!--</div>-->
+                            <!--<div class="col-5">-->
+                            <!--<label class="fieldlabels">Last Name: *</label>-->
+                            <!--<input type="text" name="lname" placeholder="Last Name"/>-->
+                            </div>
+                            </div>
+                              <div class="row">
+                             <div class="col-5">
+                            <label class="fieldlabels">Gender: *                        </label><br/>
+                           <input class="col-2" type="radio" name="gender" value="male" checked='true'>Male</input>
+                            <input class="col-2" type="radio" name="gender" value="female">Female</input>
+                             
+                            </div>
+                             <div class="col-5">
+                            <label class="fieldlabels">Contact No.: *</label>
+                            <input type="text" name="phone" placeholder="Contact No." id="myText" autofocus="autofocus"  required="1"/>
+                            </div>
+                            </div>
+
+
+
+ 
+                             <div class="row">
+                                <div class="col-5">
+                                <label class="fieldlabels">Countrys: *</label>
+                                 <select name="country_id" id="countryyyyy" t-attf-class="form-control  and 'is-invalid' or ''}"  autofocus="autofocus"  required="1">
+                                    <t t-foreach="country" t-as="cnt">
+                                        <option t-att-value="cnt.id" t-att-selected="cnt.id" id="myText" autofocus="autofocus"  required="1">
+                                            <t t-esc="cnt.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+
+                                <div class="col-5">
+                                <label class="fieldlabels">State: *</label>
+                                <select name="state_id" id="state" t-attf-class="form-control  and 'is-invalid' or ''}">
+                                    <t t-foreach="country_state" t-as="sts" >
+                                        <option t-att-value="sts.id" t-att-selected="sts.id" id="myText" autofocus="autofocus"  required="1"> 
+                                            <t t-esc="sts.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+                            </div>
+
+
+                              <div class="row">
+                             <div class="col-5">
+                            <label class="fieldlabels">City: </label>
+                            <input type="text" name="city"/>
+                            </div>
+                             <div class="col-5">
+                            <label class="fieldlabels">Address: </label>
+                            <input type="text" name="address" placeholder="Address"/>
+                            </div>
+                            </div>
+                              <div class="row">
+                            <!-- <div class="col-5">
+                             <label class="fieldlabels">Postal Code/Zip: </label>
+                            <input type="text" name="zip" />
+                            </div>
+                               <div class="col-5">
+                             <label class="fieldlabels">Fax: *</label>
+                            <input type="text" name="fax" />
+                            </div> -->
+                            </div>
+                            
+                           
+                        </div> 
+                       
+                        <input type="button" name="next" onclick="myFunction()" class="next action-button" value="Next"/>
+
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 id="head_1" class="fs-title">Background:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div> 
+                            
+                              <div class="row">
+                              <div class="col-6">
+                                   <label class="fieldlabels">In which of the following business areas do you have expertise?: *</label>
+                                    <select name="business_areas" class="col-8" required="required">
+
+                                    <option value=''>select professions</option>
+
+                                        <option name="business_areas" value="dministration and Finance">Administration and Finance</option>
+                                        <option name="business_areas" value="Agriculture and food technology">Agriculture and food technology</option>
+                                        <option name="business_areas" value="Education">Education</option>
+                                        <option name="business_areas" value="1Engineering">Engineering</option>
+                                        <option name="business_areas" value="Health">Government and public policy</option>
+                                        <option name="business_areas" value="IT and technology">IT and technology</option>
+                                        <option name="business_areas" value="Private Business">Private Business</option>
+                                        <option name="business_areas" value="Student">Student</option>
+                                        <option name="business_areas" value="Others">Others</option>
+
+                                       </select>
+                                    
+                                </div>
+                                <div class="col-6">
+                                    <label class="fieldlabels"> How many years have you been in your profession?: *</label>
+                                       
+                                    <select name="years_of_profession" class="col-6"  required="required">
+                                        <option value=''>select profession years</option>
+                                        <option name="years_of_profession" value="0-4">0-4</option>
+                                        <option name="years_of_profession" value="4-9">4-9</option>
+                                        <option name="years_of_profession" value="10-14">10-14</option>
+                                        <option name="years_of_profession" value="15">15+</option>
+                                       
+                                    </select>
+                                </div>
+                                
+                            </div> 
+                            <div class="row">
+                            <label class="fieldlabels" style="margin-left:15px">Please describe your education and business background.: </label>
+                            <textarea type="text" name="description" ></textarea>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                     <label class="fieldlabels">Have you ever been a mentor?: *</label>
+                                    
+                                    <select name="Have_been_mentor" required="required">
+                                        <option></option>
+                                         <option name="Have_been_mentor" value="Yes">Yes</option>
+                                          <option name="Have_been_mentor" value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="fieldlabels">If so, please describe your experience.: </label>
+                                    
+                                     <textarea type="text" name="experience"></textarea>
+                                </div>
+                            </div> 
+                            <div class="row">
+                            <div class="col-10">
+                            <label  class="fieldlabels">Select Mentee: *</label>
+                            <select name="mentees" t-attf-class="form-control  and 'is-invalid' or ''}" required="required">
+                                    <t t-foreach="mentees" t-as="mentee">
+                                     <option >       </option>
+                                        <option t-att-value="mentee.id" t-att-selected="mentee.id">
+                                            <t t-esc="mentee.name" />,   <t t-esc="mentee.education_background" /> Student,   [<t t-esc="mentee.gender" />]
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <label class="fieldlabels" style="margin-left:15px">Why are you interested in becoming a mentor?: </label>
+                           <textarea type="text" name="Why_are_you_interested"></textarea>
+                           </div>
+                             
+                          
+                           
+                        </div>
+                         <input type="button"   name="next" onclick="myFunction()" class="next action-button"
+                                           value="Next"/>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                           <div class="form-group col-12 s_website_form_field s_website_form_required" data-type="char" data-name="Field">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h4 id="head_1" class="fs-title">Account Information:</h4>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div>
+
+                            <label class="fieldlabels">Email: *</label>
+                            <!-- <input id="name" type="text" class="form-control s_website_form_input" name="name" required="1"/> -->
+                            <input type="email" name="login"  placeholder="Email Id" id="myText"   autofocus="autofocus"   required="required"/>
+                            <label class="fieldlabels">Username: *</label>
+                            <!--<input type="text" required />-->
+                           
+                            <input type="text" name="uname" placeholder="UserName" id="myText"  required="required"/>
+                            
+
+                            
+                            <label class="fieldlabels">Password: *</label>
+                            <input type="password" name="password" placeholder="Password" id="myText"  required="required" class='password_check'/>
+                            <label class="fieldlabels">Confirm Password: *</label>
+                            <input type="password" name="confirm_password" placeholder="Confirm Password" id="myText" autofocus="autofocus" class='password_check2' required="1"/>
+                       
+
+                            <label class="fieldlabels">Facebook</label>
+                            <input type="text" name="social" placeholder="social media link"/>
+                        
+                            <label class="fieldlabels">Instagram</label>
+                            <input type="text" name="instagram" placeholder="instagram link"/>
+                            <label class="fieldlabels">Twitter</label>
+                            <input type="text" name="social" placeholder="twitter link"/>
+                            <label class="fieldlabels">LinkedIn</label>
+                            <input type="text" name="linkedin" placeholder="social media link"/>
+
+                            </div>
+                        </div>
+                        <input type="submit" name="submit" onclick="myFunction()" class="next action-button" value="Submit"/>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                        <!-- <button type="submit" name="next"  class="next action-button"  value="Next">Next</button> -->
+                        <!-- <input type="button"  name="next"  class="next action-button" onclick="myFunction()" value="Next"/> -->
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Submit:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
+                            <br/>
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"/>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+          </div>
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/member_dashboard/static/src/js/custom.js"></script>
+        </xpath>
+      </t>
+      
+  </template>
+
+
+ 
+  <!-- Mentee register -->
+  <template id="mentee" name="Mentee register">
+      <t t-call="website.layout">
+          <div id="wrap">
+         <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 col-xl-5 text-center p-0 mt-3 mb-2">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2 id="heading">Mentee Sign Up</h2>
+                <p>Fill all form field to go to next step</p>
+
+                <form id="msform"  role="form" t-attf-action="/api/mentee/register" method="POST" onsubmit="this.action = '/api/mentee/register'" enctype="multipart/form-data">
+
+                   <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                    <!-- progressbar -->
+                    <ul id="progressbar">
+
+                        <li class="active" id="personal"><strong>Personal Information</strong></li>
+                        <li id="payment"><strong>Education Background</strong></li>
+                        <li  id="account"><strong>Account</strong></li>
+                        <li id="confirm"><strong>Submit</strong></li>
+                    </ul>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <br/>
+                    <!-- fieldsets -->
+                    <fieldset>
+                         <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 id="head_1" class="fs-title">Personal Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 1 - 4</h2>
+                                </div>
+                            </div>
+                             <input type="hidden" name="type" value="mentee" />
+                              <div  class="input-text">
+                            <label  class="fieldlabels">Profile: </label>
+                                  <!-- <img src ="" style=" width: 50px;
+                                  height: 50px;
+                                  border-radius: 10.3em;" id="viewImage1"/> -->
+                                  <!-- <button class="add" id="button1" type="button">Add Photo</button> -->
+                                  <input class="image_input" id="file-input1" type="file" name="image_1920" />
+                              </div>
+                              
+                            <!-- <div class="row">
+                                <div class="col-10">
+                                  <div  class="input-text">
+                            
+                                  <img src ="" style=" width: 50px;
+                                  height: 50px;
+                                  border-radius: 10.3em;" id="viewImage1"/>
+                                  <input class="image_input" id="file-input1" type="file" name="image_1920" />
+                              </div>
+                                </div>
+                            </div> -->
+
+                            <div class="row">
+                            <div class="col-10">
+                            <label  class="fieldlabels">Full Name: *</label>
+                            <input type="text" name="name" placeholder="Full Name" required="required"/>
+                            <!--</div>-->
+                            <!--<div class="col-5">-->
+                            <!--<label class="fieldlabels">Last Name: *</label>-->
+                            <!--<input type="text" name="lname" placeholder="Last Name"/>-->
+                            </div>
+                            </div>
+                              <div class="row">
+                             <div class="col-5">
+                            <label class="fieldlabels">Gender: *                        </label><br/>
+                           <input class="col-2" type="radio" name="gender" value="male" checked='true'>Male</input>
+                            <input class="col-2" type="radio" name="gender" value="female">Female</input>
+                             
+                            </div>
+                             <div class="col-5">
+                            <label class="fieldlabels">Contact No.: *</label>
+                            <input type="text" name="phone" placeholder="Contact No." required="required"/>
+                            </div>
+                            </div>
+
+
+
+ 
+                             <div class="row">
+                                <div class="col-5">
+                                <label class="fieldlabels">Country: *</label>
+                                 <select name="country_id" t-attf-class="form-control  and 'is-invalid' or ''}" id="countryyyyy" required="required">
+                                    <t t-foreach="country" t-as="cnt">
+                                        <option t-att-value="cnt.id" t-att-selected="cnt.id">
+                                            <t t-esc="cnt.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+
+                                <div class="col-5">
+                                <label class="fieldlabels">State: *</label>
+                                <select name="state_id" id="state" t-attf-class="form-control  and 'is-invalid' or ''}" required="required">
+                                    <t t-foreach="country_state" t-as="sts">
+                                        <option t-att-value="sts.id" t-att-selected="sts.id">
+                                            <t t-esc="sts.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+                            </div>
+
+
+                              <div class="row">
+                             <div class="col-5">
+                            <label class="fieldlabels">City: *</label>
+                            <input type="text" name="city" required="required"/>
+                            </div>
+                             <div class="col-5">
+                            <label class="fieldlabels">Address:</label>
+                            <input type="text" name="address" placeholder="Address"/>
+                            </div>
+                            </div>
+                              <!-- <div class="row">
+                            <div class="col-5">
+                             <label class="fieldlabels">Postal Code/Zip: *</label>
+                            <input type="text" name="zip" />
+                            </div>
+                               <div class="col-5">
+                             <label class="fieldlabels">Fax: *</label>
+                            <input type="text" name="fax" />
+                            </div>
+                            </div> -->
+                            
+                           
+                        </div> 
+                        <input type="button" name="next" onclick="myFunction()" class="next action-button" value="Next"/>
+
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Background:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 2 - 4</h2>
+                                </div>
+                            </div> 
+                            
+                              <div class="row">
+                                <div class="col-6">
+                                    <label class="fieldlabels"> level of education: *</label><br/>
+                                       
+                                    <select name="education_background" class="col-6" id="myText" required="required">
+                                        <option >select</option>
+                                        <option name="education_background" value="Elementory" selected='true'>Elementory</option>
+                                        <option name="education_background" value="HighSchool">HighSchool</option>
+                                        <option name="education_background" value="Preparatory">Preparatory</option>
+                                        <option name="education_background" value="Collage">Collage</option>
+                                       
+                                    </select>
+                                </div>
+                                
+                                <div class="col-6">
+                                   <label class="fieldlabels">School performance: </label><br/>
+                                     <input class="col-2" type="radio" name="school_performace" value="Good" checked='true'>Good</input>
+                                     <input class="col-2" type="radio" name="school_performace" value="Very Good">Very Good</input><br/>
+                                     <input class="col-2" type="radio" name="school_performace" value="Excellent">Excellent</input>
+                                     <input class="col-2" type="radio" name="school_performace" value="Very Great">Very Great</input>
+                                </div> 
+
+                                  
+                            <div class="row">
+                                <div class="col-6">
+                                     <label class="fieldlabels"  style="margin-left:15px">Have you ever been a mentee?: *</label>
+                                    
+                                    <select  style="margin-left:15px" name="Have_been_mentee" required="required">
+                                        <option value=''>select</option>
+                                         <option name="Have_been_mentee" value="Yes">Yes</option>
+                                          <option name="Have_been_mentee" value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="fieldlabels">If so, please describe your experience.:</label>
+                                    
+                                     <textarea type="text" name="experience"></textarea>
+                                </div>
+                            </div>   
+                                
+                            </div> 
+                             <!-- <div class="row">
+                             <div class="col-6">
+                            <label class="fieldlabels">Resume: *  </label><br/>
+                            <input type="file" id="myFile" name="file"/>
+                             
+                            </div>
+                            
+                            </div> -->
+                           
+                            
+                          
+                           
+                        </div>
+                       
+                        <input type="button" name="next" onclick="myFunction()" class="next action-button" value="Next"/>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Account Information:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 3 - 4</h2>
+                                </div>
+                            </div>
+                            <label class="fieldlabels">Email: *</label>
+                            <input type="email" name="login"  placeholder="Email Id" id="myText" required="required"/>
+                            <label class="fieldlabels">Username: *</label>
+                            <!--<input type="text" required />-->
+                            <input type="text" name="uname" placeholder="UserName" id="myText" required="required"/>
+
+                            <label class="fieldlabels">Password: *</label>
+                            <input type="password" name="password" placeholder="Password" id="myText" required="required" class='password_check'/>
+                            <label class="fieldlabels">Confirm Password: *</label>
+                            <input type="password" name="confirm_password" placeholder="Confirm Password" id="myText" required="required" class='password_check2'/>
+
+
+                            <label class="fieldlabels">Facebook</label>
+                            <input type="text" name="social" placeholder="social media link"/>
+
+                            <label class="fieldlabels">Instagram</label>
+                            <input type="text" name="instagram" placeholder="instagram link"/>
+                            <label class="fieldlabels">Twitter</label>
+                            <input type="text" name="social" placeholder="twitter link"/>
+                            <label class="fieldlabels">LinkedIn</label>
+                            <input type="text" name="linkedin" placeholder="social media link"/>                        
+                        </div>
+                        <input type="submit" name="next"  onclick="myFunction()" class="next action-button" value="Submit"/>
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-card">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h2 class="fs-title">Submit:</h2>
+                                </div>
+                                <div class="col-5">
+                                    <h2 class="steps">Step 4 - 4</h2>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2>
+                            <br/>
+                            <div class="row justify-content-center">
+                                <div class="col-3">
+                                    <img src="https://i.imgur.com/GwStPmg.png" class="fit-image"/>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <div class="row justify-content-center">
+                                <div class="col-7 text-center">
+                                    <h5 class="purple-text text-center">You Have Successfully Signed Up</h5>
+                                    <p>Our system has sent you an email, please check it for further instructions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+   <xpath expr="." position="inside">
+              <script type="text/javascript" src="/member_dashboard/static/src/js/custom.js"></script>
+        </xpath>
+      </t>
+      
+  </template>
+
+
+  <!-- Donation  -->
+  <template id="donation" name="doanation">
+      <t t-call="website.layout">
+        <div id="wrap">
+        <div class="container-fluid">
+            <div class="flex justify-center items-center bg-indigo-300 min-h-screen">
+                <div class="h-[650px] my-10 w-96 md:w-4/5 bg-white rounded-lg md:rounded-lg">
+                    <div class="flex h-full w-full">
+                        
+                        <div class="h-full p-3 rounded-lg w-full bg-white">
+                            <p class="font-semibold text-xl mt-2 text-purple-800 text-center">Where would you like to give?</p>
+                            <div class="mt-4 w-full flex flex-col">
+                                <div class="flex gap-2 w-full">
+                                    <input class="appearance-none" type="radio" name="select_option" id="select_option1"/> 
+                                    <label class="w-full" for="select_option1">
+                                        <div class="click_option h-16 gap-3 cursor-pointer transition-all w-full px-2 border-2 flex justify-center items-center">
+                                            <img class="w-8" src="https://imgur.com/8n0nocQ.png"/>
+                                            <p class="text-sm text-blue-800 font-semibold">Where it's needed most</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <input class="appearance-none" type="radio" name="select_option" id="select_option2"/> 
+                                    <label class="w-full" for="select_option2">
+                                        <div class="click_option h-16 gap-3 cursor-pointer transition-all w-full px-2 border-2 flex justify-center items-center">
+                                            <img class="w-8" src="https://imgur.com/71wfLgp.png"/>
+                                            <p class="text-sm text-blue-800 font-semibold">Send kids to camp</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="flex gap-2 w-full mt-4">
+                                    <input class="appearance-none" type="radio" name="select_option" id="select_option3"/> 
+                                    <label class="w-full" for="select_option3">
+                                        <div class="click_option h-16 gap-3 cursor-pointer transition-all w-full px-2 border-2 flex justify-center items-center">
+                                            <img class="w-8" src="https://imgur.com/BHkXQhS.png"/>
+                                            <p class="text-sm text-blue-800 font-semibold">Diabetes Research</p>
+                                        </div>
+                                    </label>
+                                    
+                                    <input class="appearance-none" type="radio" name="select_option" id="select_option4"/> 
+                                    <label class="w-full" for="select_option4">
+                                        <div class="click_option h-16 gap-3 cursor-pointer transition-all w-full px-2 border-2 flex justify-center items-center">
+                                            <img class="w-8" src="https://imgur.com/U6JvJOt.png"/>
+                                            <p class="text-sm text-blue-800 font-semibold">Another Campaign</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            
+                            </div>
+                            <p class="text-gray-500 text-sm mt-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            <p class="mt-3 font-semibold text-purple-900">Giving Options</p>
+                            <div class="flex gap-2 -mt-5">
+                                <div class="w-full ">
+                                    <input class="appearance-none " type="radio" name="giving" id="giving1"/>
+                                    <label for="giving1">
+                                        <div class="selecting h-10 text-gray-700 font-semibold text-sm cursor-pointer transition-all justify-center items-center w-full border-2 flex ">
+                                            <p>One Time Giving</p>
+                                        </div>
+                                    </label>
+                                    
+                                </div> 
+                                <div class="w-full "> 
+                                    <input class="appearance-none " type="radio" name="giving" id="giving2"/>
+                                    <label for="giving2">
+                                        <div class="selecting h-10 text-gray-700 font-semibold text-sm cursor-pointer transition-all justify-center items-center w-full border-2 flex ">
+                                            <p>Monthly Giving</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <p class="mt-3 font-semibold text-purple-900">I would like to give:</p>
+                            <div class="flex -mt-5 gap-2">
+                                <div class="w-full ">
+                                    <input class="appearance-none " type="radio" name="money" id="money1"/>
+                                    <label for="money1" class="h-10 text-gray-700 font-semibold text-sm cursor-pointer transition-all justify-center items-center w-full border-2 flex ">$100</label>
+                            
+                                </div>
+                                <div class="w-full ">
+                                    <input class="appearance-none " type="radio" name="money" id="money2"/>
+                                    <label for="money2" class="h-10 text-gray-700 font-semibold cursor-pointer transition-all text-sm justify-center items-center w-full border-2 flex ">$50</label>
+                            
+                                </div>
+                                <div class="w-full ">
+                                    <input class="appearance-none " type="radio" name="money" id="money3"/>
+                                    <label for="money3" class="h-10 text-gray-700 font-semibold text-sm cursor-pointer transition-all justify-center items-center w-full border-2 flex ">$25</label>
+                            
+                                </div>
+                                <div class="w-full ">
+                                    <input class="appearance-none " type="radio" name="money" id="money4"/>
+                                    <label for="money4" class="h-10 text-gray-700 font-semibold cursor-pointer transition-all text-sm justify-center items-center w-full border-2 flex ">Other</label>
+                            
+                                </div>
+                            </div>
+                            <p class="mt-4 text-xl font-semibold text-purple-900">$100</p>
+                            <hr class="my-4"/>
+                            <div class=" flex gap-3 items-center"> 
+                                <span class="check_it h-6 w-6 border border-gray-500 rounded flex justify-center items-center cursor-pointer transition-all "><i class=" text-white fa fa-check"></i></span>
+                                <p class="text-sm font-semibold text-purple-900 text-gray-700">This gift is in honour or in memory</p>
+                            </div>
+                            <div class="my-4 flex justify-between"> 
+                                <button class="h-10 w-32 bg-blue-600 text-sm text-white rounded-lg cursor-pointer transition-all hover:bg-blue-800 ">Donate Now</button> 
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        <div class="h-full hidden md:block relative md:rounded-lg  overflow-hidden bg-[url('https://imgur.com/2hR32WP.jpg')] w-full">
+                            <img class="h-full w-full object-cover" src="https://imgur.com/2hR32WP.jpg"/>
+                            <div class="m-auto ">
+                                <p class="absolute top-4 font-semibold text-blue-900 cursor-pointer left-4 text-xs">Other Ways to Donate</p>
+                                <p class="absolute top-8 font-semibold text-blue-900 cursor-pointer left-4 text-xs">Your Donation in Action</p>
+                                <p class="absolute top-12 font-semibold text-blue-900 cursor-pointer left-4 text-xs"> Ways to Donate</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        </div>
+      </t>
+      
+  </template>
+
+<!-- Mentroship Registeration -->
+
+    <!-- <template id="membership_register" name="membership Register">
+      <t t-call="website.layout">
+          <div id="wrap">
+              <div class="oe_structure">
+                
+                  <div class="container"> 
+                 
+
+            <div class="card">
+              
+                <div class="form">
+                     
+                    
+                    <div class="left-side">
+                     
+                    <form role="form" t-attf-action="/membership_signup" method="POST" onsubmit="this.action = '/membership_signup'" enctype="multipart/form-data">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    
+                        <div class="signup-form s_form">
+                            <div class="logo">
+                                <img src="https://imgur.com/R9PWQyL.png"/> <b id="logo_header">Memebership Signup</b>
+                            </div>
+                            
+                                <ul class="steps">
+                                  <li class="li-active"></li>
+                                  <li></li>
+                                  <li></li>
+                                  
+                                </ul>
+         
+                                
+                            
+                            <div class="main active"> 
+                                <div class="top-div">
+                                    
+                                    
+                                    <p id="p_1">Basic Personal Information</p>
+                                </div>
+                                <div class="input-text">
+                                    <input type="text" name="name" placeholder="Full name"  id="myText" required="required"  />
+                                </div>
+                                 <div class="input-text">
+                                    <input type="text" name="phone" placeholder="Contact No" id="myText" required="required" />
+                                </div>
+                           
+                                <div class="input-text"> 
+                                    <input type="text" name="city" placeholder="City" id="myText" required="required" />
+                                </div>
+                                <div class="input-text">
+                                  <label class="col-form-label" for="country_id">State</label>
+                                  <select name="state_id" t-attf-class="form-control  and 'is-invalid' or ''}" id="myText" autofocus="autofocus"  required="1" >
+                                    <t t-foreach="country_state" t-as="sts">
+                                        <option t-att-value="sts.id" t-att-selected="sts.id">
+                                            <t t-esc="sts.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+                                <div class="input-text">
+                                  <label class="col-form-label" for="country_id">Country</label>
+                                  <select name="country_id" t-attf-class="form-control  and 'is-invalid' or ''}" id="myText" autofocus="autofocus"  required="1" >
+                                    <t t-foreach="country" t-as="cnt">
+                                        <option t-att-value="cnt.id" t-att-selected="cnt.id">
+                                            <t t-esc="cnt.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                                </div>
+                               
+                                <div id="list1" class="dropdown-check-list " tabindex="100">
+                                
+                                  <span class="anchor">Select Projects</span>
+                                  <ul class="items">
+                                    <t t-foreach="projects" t-as="project">
+                                    <input type="checkbox" t-att-value="project.id" name="project[]"/><span t-esc="project.name" />
+                                    </t>
+                                  </ul>
+                              </div>
+                              <div>
+                                
+                              </div>
+                                
+                                <div class="buttons">
+                                    <button type="button" class="membership_next_button">Next</button>
+                                    
+                                </div>
+                            </div>
+                            <div class="main">
+                                <div class="top-div">
+                                    <p id="p_1">Account Information</p>
+                                </div>
+                                <div class="input-text">
+                                    <input type="text" name="login" placeholder="Enter your E-mail address" id="myText" id="myText" autofocus="autofocus"  required="1" />
+                                </div>
+                                <div class="input-text">
+                                    <input type="password" name="password" placeholder="Enter your password" id="myText" id="myText" autofocus="autofocus"  required="1" />
+                                </div>
+                                <div class="input-text">
+                                    <input type="password" name="confirm_password" placeholder="Confirm Password" id="myText" id="myText" autofocus="autofocus"  required="1" />
+                                </div>
+                             
+                                  <div class="buttons">
+                                    <button type="button" class="previous_button">Previous</button>
+                                    <button type="submit" class="membership_sign_next_button">Submit</button>
+                                    
+                                </div>
+                               
+                            </div>
+                        
+                          
+                            <div class="main"> 
+                                <div class="top-div">
+                                    
+                                    <h2>Welcome Back</h2>
+                                    <p>Log in to continue</p>
+                                </div>
+                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                </svg>
+                                <div class="check_box">
+                                    <p>Congratulations Mr./Mrs <span id="shown_name"></span> you have successfully registered.</p>
+                                </div>
+                            </div>
+                        </div>   
+                      </form>
+                            
+                        <div class="signin-form s_form d-none">
+                            <form role="form" t-attf-action="/membership_signin" method="post" onsubmit="this.action = '/membership_signin'">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="main_signin active"> 
+                                <div class="top-div">
+                                    <img src="https://imgur.com/R9PWQyL.png"/>
+                                    <h2 id="h2">Welcome Back</h2>
+                                    <p>Log in to continue</p>
+                                </div>
+                                <div class="sign_in">
+                                    <h3>Sign In</h3> 
+                                </div>
+                                <div class="input-text">
+                                    <input type="text" name="login" placeholder="E-mail" required="required" />
+                                </div>
+                                <div class="input-text"> 
+                                    <input type="password" name="password" placeholder="Password" required="required"/>
+                                </div>
+                                <div class="buttons sign_button"> 
+                                    <button type="submit" class="membership_sign_next_button">Submit</button>
+                                    
+                                </div>
+                            </div>
+                            </form>
+                            <div class="main_signin">
+                                <div id="logo" class="top-div">
+                                    <img src="https://imgur.com/R9PWQyL.png"/>
+                                    <h2>Welcome Back</h2>
+                                    <p>Log in to continue</p> 
+                                </div>
+                                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                                </svg>
+                                <div class="check_box">
+                                    <p>Congratulations1 Mr./Mrs <span id="shown_signin_name"></span> you have successfully loggedin.</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+                    </div> 
+                  
+                    <div class="right-side" id="side_image">
+                        <div class="cover-image">
+                            
+                            <img class="right_img " src="https://i.ibb.co/1XKgWcX/join-us.jpg"/>
+                            <img class="right_img d-none" src="https://imgur.com/jUSvhqu.jpg"/>
+                        </div> 
+                        <div class="header">
+                            <p class="account">Already have an account?</p>
+                            <p class="account d-none">Don't have an account?</p>
+                            <button type="button" class="sign-in-up-toggle">Sign in</button>
+                            
+                            
+                        </div>
+                        <div class="right_text">
+                            <h2>Donec Facilisis Tortor<br/> Ut Augue Lacinia,<br/>At Vivera</h2>
+                           
+                        </div>
+                       
+                      
+        
+                    
+        
+                    </div>
+                   
+                </div>
+            
+            </div>  
+            </div>
+              </div>
+          </div>
+     
+      </t>
+      
+  </template>
+ -->
+
+
+
+  
+     <!-- Membership  Registeration -->
+
+    <template id="mentorssss" name="mentor register">
+      <t t-call="website.layout">
+          <div id="wrap">
+              <div class="oe_structure">
+                  <div class="container">
+                      <section class="vh-30" style="">
+                       
+                              <xpath expr="." position="inside">
+
+
+                                  <link rel="stylesheet" href="/custom_web/static/src/css/custom_style.css"/>
+                    
+                    
+                    
+                                </xpath>
+  
+                               <div class="container">
+    <div class="card">
+        <div class="form">
+            <div class="left-side">
+                <div class="left-heading">
+                    <h3>Mentor Registration</h3>
+                </div>
+                <div class="steps-content">
+                    <h3>Step <span class="step-number">1</span></h3>
+                    <p class="step-number-content active">Enter your personal information to get closer to companies.</p>
+                    <p class="step-number-content d-none">Get to know better by adding your diploma,certificate and education life.</p>
+                    <p class="step-number-content d-none">Help companies get to know you better by telling then about your past experiences.</p>
+                    <p class="step-number-content d-none">Add your profile piccture and let companies find youy fast.</p>
+                </div>
+                <ul class="progress-bar">
+                    <li class="active">Personal Information</li>
+                    <li>Education</li>
+                    <li>Work Experience</li>
+                    <li>User Photo</li>
+                </ul>
+                
+
+                
+            </div>
+            <div class="right-side">
+                <div class="main active">
+                    <small><i class="fa fa-smile-o"></i></small>
+                    <div class="text">
+                        <h2>Your Personal Information</h2>
+                        <p>Enter your personal information to get closer to copanies.</p>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text"   id="user_name"/>
+                            <span>First Name</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" />
+                            <span>Last Name</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text"  />
+                            <span>Phone number</span>
+                        </div>
+                        <div class="input-div">
+                            <input type="text"  />
+                            <span>E-mail Address</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <select>
+                                <option>Select Country</option>
+                                <option>India</option>
+                                <option>France</option>
+                                <option>UK</option>
+                                <option>USA</option>
+                                <option>Germany</option>
+                                <option>Russia</option>
+                                <option>China</option>
+                                <option>Japan</option>
+                                <option>Pakistan</option>
+                            </select>
+                        
+                        </div>
+                        <div class="input-div">
+                            
+                            <select>
+                                <option>Select City</option>
+                                <option>New Delhi</option>
+                                <option>Paris</option>
+                                <option>London</option>
+                                <option>Washington D.C.</option>
+                                <option>Berlin</option>
+                                <option>Moscow</option>
+                                <option>Bejing</option>
+                                <option>Tokyo</option>
+                                <option>Islamabad</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button class="membership_next_button">Next Step</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <small><i class="fa fa-smile-o"></i></small>
+                    <div class="text">
+                        <h2>Education</h2>
+                        <p>Inform companies about your education life.</p>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text"  />
+                            <span>School Name</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text" />
+                            <span>Board Name</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text"  />
+                            <span>College/University name</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <select>
+                                <option>Select Course</option>
+                                <option>BCA</option>
+                                <option>B-TECH</option>
+                                <option>BA</option>
+                                <option>B-COM</option>
+                                <option>B-SC</option>
+                                <option>MBA</option>
+                                <option>MCA</option>
+                                <option>M-COM</option>
+                                <option>M-TECH</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="membership_next_button">Next Step</button>
+                    </div>
+                </div>
+                <div class="main">
+                    <small><i class="fa fa-smile-o"></i></small>
+                    <div class="text">
+                        <h2>Work Experiences</h2>
+                        <p>Can you talk about your past work experience?</p>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text"  />
+                            <span>Experience 1</span>
+                        </div>
+                        <div class="input-div"> 
+                            <input type="text"  />
+                            <span>Position</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text" />
+                            <span>Experience 2</span>
+                        </div>
+                        <div class="input-div">
+                            <input type="text" />
+                            <span>Position</span>
+                        </div>
+                    </div>
+                    <div class="input-text">
+                        <div class="input-div">
+                            <input type="text" />
+                            <span>Experience 3</span>
+                        </div>
+                        <div class="input-div">
+                            <input type="text" />
+                            <span>Position</span>
+                        </div>
+                    </div>
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="membership_next_button">Next Step</button>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="main">
+                    <small><i class="fa fa-smile-o"></i></small>
+                    <div class="text">
+                        <h2>User Photo</h2>
+                        <p>Upload your profile picture and share yourself.</p>
+                    </div>
+                    <div class="user_card">
+                        <span></span>
+                        <div class="circle">
+                            <span><img src="https://i.imgur.com/hnwphgM.jpg"/></span>
+                            
+                        </div>
+                        <div class="social">
+                            <span><i class="fa fa-share-alt"></i></span>
+                            <span><i class="fa fa-heart"></i></span>
+                            
+                        </div>
+                        <div class="user_name">
+                            <h3>Peter Hawkins</h3>
+                            <div class="detail">
+                                <p><a href="#">Izmar,Turkey</a>Hiring</p>
+                                <p>17 last day . 94Apply</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttons button_space">
+                        <button class="back_button">Back</button>
+                        <button class="submit_button">Submit</button>
+                    </div>
+                </div>
+                 <div class="main">
+                     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                     
+                    <div class="text congrats">
+                        <h2>Congratulations!</h2>
+                        <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
+                    </div>
+                </div>
+                
+            
+              
+
+            
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                        </section>
+                  </div>
+              </div>
+          </div>
+          <script src="/custom_website/static/src/js/custom_js.js"/>
+      </t>
+      
+  </template>
+
+
+
+  <!-- Donation Form -->
+
+
+
+
+
+ <!-- <div style="margin-top: -100px;" class="container rounded bg-white mt-5 mb-5"> <div class="row"> <div class="col-md-3 border-right"> <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" src="/userimage/{{ Auth::user()->image }}" alt="image" class="img-fluid rounded-circle mb-2" width="188" height="228"><span class="font-weight-bold">{{ Auth::user()->name }}</span><span class="text-black-50">{{ Auth::user()->email }}</span><span> </span></div> </div> <div class="col-md-5 border-right"> <div class="p-3 py-5"> <div class="d-flex justify-content-between align-items-center mb-3"> <h4 class="text-right">Profile Settings</h4> </div> <div class="row mt-2"> <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" name="name" value="{{ Auth::user()->name }}"></div> <div class="col-md-6"><label class="labels"></label><input type="text" class="form-control" value="" placeholder="name" readonly></div> </div> <div class="row mt-3"> <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" class="form-control" placeholder="enter phone number" name="phone" value="{{ Auth::user()->phone }}"></div> <div class="col-md-12"><label class="labels">Address</label><input type="text" class="form-control" placeholder="enter address" name="address" value="{{ Auth::user()->address }}"></div> <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" name="email" value="{{ Auth::user()->email }}"></div> <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div> </div> <div class="row mt-3"> <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div> <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div> </div> <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div> </div> </div> <div class="col-md-4"> <div class="p-3 py-5"> <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br> <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br> <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div> </div> </div> </div>
+
+</div> -->
+
+
+<!-- Custome forget password Template -->
+<template id="reset_password" name="Reset password">
+  <t t-call="web.login_layout">
+      <div t-if="message" class="oe_login_form clearfix">
+          <p class="alert alert-success" t-if="message" role="status">
+              <t t-esc="message"/>
+          </p>
+          <a href="/web/signin" class="btn btn-link btn-sm float-right" role="button">Back to Login</a>
+      </div>
+
+      <form class="oe_reset_password_form"  action="/register/web/reset_password" role="form" method="post" t-if="not message">
+        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+          <t t-if="token and not invalid_token">
+              <t t-call="auth_signup.fields">
+                  <t t-set="only_passwords" t-value="1"/>
+              </t>
+          </t>
+
+          <t t-if="not token">
+              <div class="form-group field-login">
+                  <label for="login" class="col-form-label">Your Phone:</label>
+                  <input type="text" name="phone" t-att-value="phone" id="phone" class="form-control"
+                      autofocus="autofocus" required="required" autocapitalize="off"/>
+              </div>
+          </t>
+
+          <p class="alert alert-danger" t-if="error" role="alert">
+              <t t-esc="error"/>
+          </p>
+          <input type="hidden" name="redirect" t-att-value="redirect"/>
+          <input type="hidden" name="token" t-att-value="token"/>
+          <div class="clearfix oe_login_buttons">
+            <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+              <!-- <button type="submit" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Confirm</button> -->
+              <div class="d-flex justify-content-between align-items-center small mt-2">
+                  <a t-if="not token" t-attf-href="/web/signin?{{ keep_query() }}">Back to Login</a>
+                  <a t-if="invalid_token" href="/web/signin">Back to Login</a>
+              </div>
+              <div class="o_login_auth"/>
+          </div>
+
+      </form>
+      
+
+  </t>
+</template>
+
+
+<!-- Custome forget password Template -->
+<template id="confirm_reset_password" name="Confirm Reset password">
+  <t t-call="web.login_layout">
+      <div t-if="message" class="oe_login_form clearfix">
+          <p class="alert alert-success" t-if="message" role="status">
+              <t t-esc="message"/>
+          </p>
+          <a href="/web/signin" class="btn btn-link btn-sm float-right" role="button">Back to Login</a>
+      </div>
+
+      <form class="oe_reset_password_form"  action="/register/web/confirm_reset_password" role="form" method="post" t-if="not message">
+        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+        <p style="color:lightgreen;">An Verification code has been sent with credentials to reset your password</p>
+          <t t-if="token and not invalid_token">
+              <t t-call="auth_signup.fields">
+                  <t t-set="only_passwords" t-value="1"/>
+              </t>
+          </t>
+          <t t-foreach="search_user" t-as="users">
+           
+            <t t-if="not token">
+           
+                  <input type="hidden" name="user_id" t-att-value="users.id" value = 't-esc="users.id"' id="password" 
+                  invisible="1"
+                   class="form-control"
+                      autofocus="autofocus" required="required" autocapitalize="off"/>
+          
+          </t>
+          </t>
+          <t t-if="not token">
+              <div class="form-group field-login">
+                  <label for="login" class="col-form-label">Verification code</label>
+                  <input type="text" name="verification" t-att-value="verification" id="verification" class="form-control"
+                      autofocus="autofocus" required="required" autocapitalize="off"/>
+              </div>
+          </t>
+          <t t-if="not token">
+            <div class="form-group field-login">
+                <label for="login" class="col-form-label">New Password</label>
+                <input type="password" name="password" t-att-value="password" id="password" class="form-control"
+                    autofocus="autofocus" required="required" autocapitalize="off"/>
+            </div>
+        </t>
+       
+        <t t-if="not token">
+          <div class="form-group field-login">
+              <label for="login" class="col-form-label">Confirm Password</label>
+              <input type="password" name="cpassword" t-att-value="cpassword" id="cpassword" class="form-control"
+                  autofocus="autofocus" required="required" autocapitalize="off"/>
+          </div>
+      </t>
+
+          <p class="alert alert-danger" t-if="error" role="alert">
+              <t t-esc="error"/>
+          </p>
+          <input type="hidden" name="redirect" t-att-value="redirect"/>
+          <input type="hidden" name="token" t-att-value="token"/>
+          <div class="clearfix oe_login_buttons">
+            <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+              <!-- <button type="submit" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Confirm</button> -->
+              <div class="d-flex justify-content-between align-items-center small mt-2">
+                  <a t-if="not token" t-attf-href="/web/signin?{{ keep_query() }}">Back to Login</a>
+                  <a t-if="invalid_token" href="/web/signin">Back to Login</a>
+              </div>
+              <div class="o_login_auth"/>
+          </div>
+
+      </form>
+
+  </t>
+</template>
+
+
+<!-- Profile _setting template -->
+
+
+<template id="my_profile" name="Profile">
+  <t t-call="website.layout">
+      <div id="wrap">
+          <div class="oe_structure">
+              <div class="container">
+
+                    <div class="container">
+                      <div class="main-body">
+                    
+                            <div class="row gutters-sm">
+                              <div class="col-md-4 mb-3">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <div class="d-flex flex-column align-items-center text-center">
+                                      
+                                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"/>
+                                      <div class="mt-3">
+                                        <h4 t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["name"]}'></h4>
+                                        <p class="text-secondary mb-1" t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["email"]}'></p>
+                                        <p class="text-muted font-size-sm"></p>
+                                        <div class="row">
+                                          <div class="col-sm-12">
+                                            <a class="btn btn-info " target="__blank" href="/my/account">Edit</a>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                               
+                              </div>
+                              <div class="col-md-8">
+                                <div class="card mb-3">
+                                  <div class="card-body">
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name</h6>
+                                      </div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <h6 class="mb-0"  ></h6>
+                                      
+                                      </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                      </div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <h6 class="mb-0" t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["email"]}'></h6>
+
+                                      </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                      </div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <h6 class="mb-0" t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["phone"]}'></h6>
+
+                                      </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Age</h6>
+                                      </div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <h6 class="mb-0" t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["age"]}'></h6>
+                                        
+                                      </div>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                      <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                      </div>
+                                      <div class="col-sm-9 text-secondary">
+                                        <h6 class="mb-0" t-field="user_id.partner_id"  t-options='{"widget": "contact", "fields": ["address"]}'></h6>
+
+                                      </div>
+                                    </div>
+                                    <hr/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+
+              </div>
+
+          </div>
+      </div>
+  </t>
+  
+</template>
+
+
+  
+
+    <record id="sign_up_thanks" model="website.page">
+        <field name="name">Thanks</field>
+        <field name="type">qweb</field>
+        <field name="url">sign-up-success</field>
+        <field name="website_published">True</field>
+        <field name="key">register.sign_up_thanks</field>
+        <field name="arch" type="xml">
+            <t name="Thanks" t-name="register.sign_up_thanks">
+              <t t-call="website.layout">  
+              <div id="wrap">
+                    <div class="container">
+                        <!-- <h1>Successfull!</h1> -->
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="alert alert-success" role="status">
+                                   <h5> Your Registeration has been successfully.
+                                    <!-- <p class="small fw-bold mt-2 pt-1 mb-0"> <a href="/web/signin"
+                                      class="link-danger">Login</a></p> -->
+                                   </h5>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </t>
+            </t>
+        </field>
+
+
+
+
+
+    </record>
+
+</odoo>

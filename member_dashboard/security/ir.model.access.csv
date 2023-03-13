@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mentor_duration,access.mentor.duration,model_mentor_duration,,1,1,1,1
+access_mentor_mapping,access.mentor.mapping,model_mentor_mapping,,1,1,1,0
+
+access.member.complaint.complaint.management,access_member_complaint,member_dashboard.model_member_complaint,member_dashboard.member_group_complaint_management,1,1,0,0
+access.member.complaint.agent,access_member_complaint,member_dashboard.model_member_complaint,member_dashboard.member_group_agent,1,0,0,0
+access.member.complaint.user,access_member_complaint,member_dashboard.model_member_complaint,member_dashboard.member_group_user,1,1,1,1
+access.member.complaint.manager,access_member_complaint,member_dashboard.model_member_complaint,member_dashboard.member_group_manager,1,0,0,0
+
+access.complaint.category.manager,access_complaint_category,member_dashboard.model_complaint_category,member_dashboard.member_group_manager,1,1,1,1
+access.complaint.category.complaint.management,access_complaint_category,member_dashboard.model_complaint_category,member_dashboard.member_group_complaint_management,1,1,1,1
+access.complaint.category.user,access_complaint_category,member_dashboard.model_complaint_category,member_dashboard.member_group_user,1,0,0,0
+access.complaint.category.agent,access_complaint_category,member_dashboard.model_complaint_category,member_dashboard.member_group_agent,1,0,0,0
+
+access.report.report,access_report_report,member_dashboard.model_report_report,member_dashboard.member_group_manager,1,1,1,1
+access.report_report.management,access_report_report,member_dashboard.model_report_report,member_dashboard.member_group_complaint_management,1,1,1,1

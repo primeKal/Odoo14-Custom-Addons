@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.hr.fleet</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="MRP Incentive" id="mrp_incentive" string="Mrp Incentive" data-key="mrp_incentive">
+                        <h2>Mrp Incentive</h2>
+                        <div class="row mt16 o_settings_container" id="mrp_incentive_setting">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Set amount to be paid based on percentage</span>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Above 100% </span>
+                                        <field name="_100" class="text-center oe_inline" />
+                                        <span> will be paid</span>
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Above 90% </span>
+                                        <field name="_90" class="text-center oe_inline" />
+                                        <span> will be paid</span>
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Above 80% </span>
+                                        <field name="_80" class="text-center oe_inline" />
+                                        <span> will be paid</span>
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Above 65% </span>
+                                        <field name="_65" class="text-center oe_inline" />
+                                        <span> will be paid</span>
+                                    </div>
+                                    <div class="text-muted content-group mt16">
+                                        <span>Above 50% </span>
+                                        <field name="_50" class="text-center oe_inline" />
+                                        <span> will be paid</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mrp_incentive_config_settings_action" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'mrp_incentive', 'bin_size': False}</field>
+        </record>
+
+        <menuitem id="mrp_incentive_config_settings_menu" name="Incentive Settings"
+            parent="mrp.menu_mrp_configuration"
+            sequence="0"
+            action="mrp_incentive_config_settings_action"
+            groups="base.group_system"/>
+    </data>
+</odoo>

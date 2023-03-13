@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Event tree and form View -->
+    <record id="view_offical_book_tree" model="ir.ui.view">
+        <field name="name">offical.book.tree</field>
+        <field name="model">offical.book</field>
+        <field name="arch" type="xml">
+            <tree string="Booked Officals">
+                <field name="event_id"/>
+                <field name="date_of_event"/>
+                <field name="sport_type"/>
+                <field name="team" optional="show"/>
+                 <field name="picture" optional="show"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_offical_book_form" model="ir.actions.act_window">
+        <field name="name">Offical Books</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">offical.book</field>
+        <field name="view_mode">tree,form</field>
+        
+    </record>
+  
+
+</odoo>

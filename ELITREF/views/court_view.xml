@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Event tree and form View -->
+    <record id="view_courts_tree" model="ir.ui.view">
+        <field name="name">court.court.tree</field>
+        <field name="model">event.court.types</field>
+        <field name="arch" type="xml">
+            <tree string="courts">
+                <!-- <field name="seq" />
+                <field name="country"/>
+                <field name="state"/> -->
+                <field name="name"/>
+                 <!-- <field name="team" optional="show"/> -->
+                
+            </tree>
+        </field>
+    </record>
+
+
+
+
+  
+    <!-- <record id="action_court_form" model="ir.actions.act_window">
+        <field name="name">Court</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">court.court</field>
+        <field name="view_mode">tree</field>
+        
+    </record> -->
+  
+
+</odoo>

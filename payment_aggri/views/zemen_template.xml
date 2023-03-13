@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="zemen" name="Zemen Aggrigator Payment">
+            <div id="wrap" class="flex items-center justify-center text-center"
+                 style="display:flex;justify-content:center;margin-top:20px;">
+                we are here to pay
+                <span id="name"><t t-esc="data['name']"/></span>
+                <span id="sessionId"><t t-esc="data['id']"/></span>
+                <span id="js_url"><t  t-esc="data['js_url']"/></span>
+                <span id="paps"></span>
+<!--                <span id="scr"><t t-esc="data.address"/></span>-->
+            </div>
+            <script src="https://test-gateway.mastercard.com/static/checkout/checkout.min.js"
+                    ></script>
+            <script type="text/javascript">
+                function errorCallback(error){
+                alert("Error: " + JSON.stringify(error));
+                }
+
+                var id = document.getElementById("sessionId")
+                var merchant = document.getElementById("name")
+                var js = document.getElementById("js_url")
+<!--                var a = "&lt;script src=`${js}`/&gt;";-->
+<!--                var ss = document.createElement('script');-->
+<!--                ss.src = js.innerHTML-->
+<!--                console.log('this is js' + ss.src)-->
+<!--                var toreplace = document.getElementById("paps");-->
+<!--                var headContent = document.getElementsByTagName('head')[0]-->
+<!--                toreplace.appendChild(ss)-->
+<!--                var ssw = document.createElement('script');-->
+<!--                ssw.innerHTML = "Checkout.configure({session: {id: `${String(id.textContent)}`}});Checkout.showPaymentPage() "-->
+<!--                toreplace.appendChild(ssw)-->
+
+                console.log(name)
+                console.log(String(id.textContent))
+                console.log(merchant.textContent)
+<!--                console.log(address.textContent)-->
+                console.log(String(id.textContent))
+                Checkout.configure({
+                    session: {
+                        id: String(id.textContent)}
+                });
+                Checkout.showPaymentPage();
+            </script>
+
+    </template>
+    <template id="boa" name="BOA Payment Aggrigator">
+            <div id="wrap" class="flex items-center justify-center text-center"
+                 style="display:flex;justify-content:center;margin-top:20px;">
+                we are here to pay
+                <span id="data"><t t-esc="data"/></span>
+                <span id="total"><t t-esc="total"/></span>
+                <span id="orderId"><t  t-esc="orderId"/></span>
+                <span id="subtotal"><t t-esc="subtotal"/></span>
+                <span id="tax"><t t-esc="tax"/></span>
+                <span id="shiping"><t t-esc="shiping"/></span>
+                <span id="data3"><t t-esc="data3"/></span>
+                <span id="url"><t t-esc="url"/></span>
+            </div>
+<!--            <script src="https://test-gateway.mastercard.com/checkout/version/61/checkout.js"-->
+<!--                    ></script>-->
+<!--            <script type="text/javascript">-->
+
+<!--            </script>-->
+
+    </template>
+</odoo>

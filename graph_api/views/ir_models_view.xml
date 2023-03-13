@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_models_view_form" model="ir.ui.view">
+        <field name="name">custom.models.view.form</field>
+        <field name="model">custom.models</field>
+        <field name="arch" type="xml">
+            <form string="Model">
+                <sheet>
+                    <group>
+                        <field name="name" widget="many2one"/>
+                        <field name="fields"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_models_view_tree" model="ir.ui.view">
+        <field name="name">custom.models.view.tree</field>
+        <field name="model">custom.models</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="name"/>
+                <field name="fields"/>
+                <field name="display"/>
+            </tree>
+        </field>
+    </record>
+    <record id="ir_models_view_kanban" model="ir.ui.view">
+        <field name="name">custom.models.view.kanban</field>
+        <field name="model">custom.models</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_details">
+                            <field name="display"/>
+                            <field name="fields"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="ir_models_action" model="ir.actions.act_window">
+        <field name="name">Models</field>
+        <field name="res_model">custom.models</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <P>
+                Add New Models
+            </P>
+        </field>
+    </record>
+
+    <menuitem
+            id="graph_models_menu"
+            name="Graph Models"
+            sequence="10"/>
+
+    <menuitem
+            id="models_menu"
+            name="Models"
+            action="ir_models_action"
+            groups="base.group_user"
+            parent="graph_models_menu"
+            sequence="10"/>
+
+</odoo>

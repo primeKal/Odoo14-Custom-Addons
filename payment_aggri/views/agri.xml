@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_models_view_form" model="ir.ui.view">
+        <field name="name">custom.models.view.form</field>
+        <field name="model">aggrigator.payer</field>
+        <field name="arch" type="xml">
+            <form string="Model">
+                <group>
+                    <field name="id" string="Id" readonly="1"/>
+                    <field name="name" string="Name"/>
+                    <field name="who" string="Company"/>
+                    <field name="state" string="State"/>
+                    <field name="url" string="Url"/>
+                    <field name="ip" string="IP Address"/>
+                    <field name="type" string="Payment Type"/>
+                </group>
+                <group>
+
+                    <field name="callBack"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;telebirrussd&quot;]]}"/>
+                    <field name="callerId"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;telebirrussd&quot;]]}"/>
+                    <field name="callerPin"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;telebirrussd&quot;]]}"
+                           password="True"/>
+                    <field name="callerEncryptedPassword"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;telebirrussd&quot;]]}"
+                           password="True"/>
+                    <field name="shortCode"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;telebirrussd&quot;]]}"/>
+                </group>
+                <group>
+                    <field name="merchant"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"/>
+                    <field name="apiUsername"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"/>
+                    <field name="apiPassword"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"
+                           password="True"/>
+                    <field name="callback"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"/>
+                    <field name="js_url"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"/>
+                    <field name="callback_type"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;zemen&quot;]]}"/>
+                </group>
+                <group>
+                    <field name="profile_id"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;boa&quot;]]}"/>
+                    <field name="access_key"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;boa&quot;]]}"
+                            password="True"/>
+                    <field name="secret_key"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;boa&quot;]]}"
+                           password="True"/>
+                    <field name="callack_boa"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;boa&quot;]]}"
+                           password="True"/>
+                </group>
+                <group>
+                    <field name="fetan_meerchant_id"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;amole&quot;]]}"/>
+                    <field name="hrd_ipaddress"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;amole&quot;]]}"/>
+                    <field name="hdr_signiture"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;amole&quot;]]}"
+                            />
+                    <field name="hdr_username"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;amole&quot;]]}"
+                           />
+                    <field name="hrd_password"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;amole&quot;]]}"
+                           password="True"/>
+                </group>
+
+                <group>
+                    <field name="hello_username"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;hellocash&quot;]]}"/>
+                    <field name="hello_password"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;hellocash&quot;]]}"/>
+                    <field name="hello_system"
+                           attrs="{&quot;invisible&quot;: [[&quot;type&quot;,&quot;!=&quot;,&quot;hellocash&quot;]]}"
+                            />
+                </group>
+
+
+
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_models_view_tree" model="ir.ui.view">
+        <field name="name">custom.models.view.tree</field>
+        <field name="model">aggrigator.payer</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="name"/>
+                <field name="type"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="ir_call_payers" model="ir.actions.act_window">
+        <field name="name">Payment Types</field>
+        <field name="res_model">aggrigator.payer</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <P>
+                Add New Payment Types
+            </P>
+        </field>
+    </record>
+
+    <menuitem
+            id="agrigator_menu"
+            name="Payment Agrigator"
+            sequence="10"/>
+
+    <menuitem
+            id="models_menu"
+            name="Payments Models"
+            action="ir_call_payers"
+            groups="base.group_user"
+            parent="agrigator_menu"
+            sequence="10"/>
+</odoo>

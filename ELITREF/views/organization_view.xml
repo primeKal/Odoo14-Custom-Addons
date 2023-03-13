@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <!-- <record id="view_match_tree" model="ir.ui.view">
+        <field name="name">match.match.tree</field>
+        <field name="model">match.match</field>
+        <field name="arch" type="xml">
+            <tree string="Match">
+                <field name="seq" />
+                <field name="team_1"/>
+                <field name="team_2"/>
+                <field name="event_id" optional="show"/>
+                 <field name="location_id" optional="show"/>
+                 <field name="date_of_event" optional="show"/>
+                 <field name="start_date_time" optional="show"/>
+                 <field name="end_date_time" optional="show"/>
+               
+            </tree>
+        </field>
+    </record> 
+    -->
+     
+    
+
+
+    <record id="view_organization_tree" model="ir.ui.view">
+        <field name="name">organization.organization.tree</field>
+        <field name="model">organization.organization</field>
+        <field name="arch" type="xml">
+            <tree string="Organizations">
+                            <field name="name" />
+                            <field name="sport_type"
+                            colspan="4"/>
+                            <field name="states"/>
+                            <field name='logo' optional="show" widget="image"/>
+                           
+            </tree>
+        </field>
+    </record> 
+    <record id="view_organization_form" model="ir.ui.view">
+        <field name="name">organization.organization.form</field>
+        <field name="model">organization.organization</field>
+        <field name="arch" type="xml">
+            <form string="Organization">
+                <!-- <header>
+                    <button
+                    name="action_confirm"
+                    states="draft"
+                    string="Confirm Sale"
+                    class="btn-primary"
+                    type="object"
+                />
+
+                    <button
+                    name="action_cancel_draft"
+                    states="cancel"
+                    string="Set to Draft"
+                    type="object"
+                    class="oe_highlight"
+                />
+                <button
+                    name="action_cancel"
+                    string="Cancel"
+                    states="sale"
+                    type="object"
+                    class="oe_highlight"
+                />
+                <button
+                    name="action_cancel"
+                    string="Cancel"
+                    states="draft"
+                    type="object"
+                    class="oe_highlight"
+                />
+                <button
+                    name="action_done"
+                    type="object"
+                    string="Set to Done"
+                    states="sale"
+                    class="oe_highlight"
+                />
+                    <field
+                        name="state"
+                        select="2"
+                        widget="statusbar"
+                        statusbar_visible="draft,sent,sale,done"
+                    />
+                </header> -->
+                <sheet>
+                    <group>
+
+                        <field name='logo' widget="image" class="oe_avatar" />
+                
+                   </group>
+                    <group colspan="4" col="4">
+                        <field name="name"/>
+                        <field name="states" />
+                    </group>
+                        <group colspan="4" col="4">
+                            <field
+                                name="sport_type"
+                                string="Sport Type"
+                                required="1"
+                            />
+                            <field
+                                name="about"
+                                string="About"
+                                required="1"
+                            />
+                            <field name='user_id' string="User"
+                                required="1"/>
+
+                            <field name='default_home_team'
+                                />
+
+                            <field name='default_away_team'
+                                />
+                            <!-- <field name='location' string="Location"
+                                required="1" widget="many2many_tags"/> -->
+                        </group>
+
+                        <newline />
+
+                        <separator string="Organization Details" colspan="4" />
+                        
+                        <notebook>
+                            <page string="Details">
+                                <group>
+                                    <field name="name"/>
+                                </group>
+                            </page>
+                            <page string="Bank Information" >
+                                <field name="bank_information">
+                                    <tree editable="botton">
+                                        <field name="name"/>
+                                        <field name="account"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                            </group>
+                                            <group>
+                                                <field name="account"/>
+                                            </group>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <!-- <page string="Other Info" >
+                                <field name="note"/>
+                            </page> -->
+                        </notebook>
+                        <!-- <div class="oe_clear" /> -->
+                    </sheet>
+                    
+                </form>
+        </field>
+    </record> 
+    <!-- Event tree and form View -->
+    <!-- <record id="view_event_tree" model="ir.ui.view">
+        <field name="name">event.event.tree</field>
+        <field name="model">event.event</field>
+        <field name="arch" type="xml">
+            <tree string="Organizations">
+               
+                <field name="name"/>
+                <field name="pay_per_game"/>
+                <field name="sport_type"/>
+                <field name="level" optional="show"/>
+                 <field name="crow_size" optional="show"/>
+                <field name="location" optional="show"/>
+                <field name="date_of_event" optional="show"/>
+                <field name="start_time" optional="show"/>
+                <field name="end_time" optional="show"/>
+                <field name="expected_game" optional="show"/>
+                <field name="excepted_court" optional="show"/>
+            </tree>
+        </field>
+    </record> -->
+
+    <!-- <record id="view_event_form" model="ir.ui.view">
+        <field name="name">event.event.form</field>
+        <field name="model">event.event</field>
+        <field name="arch" type="xml">
+            <form> -->
+                <!-- <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" states="draft"
+                            confirm="Are you sure that you need to confirm ?"
+                            type="object"/>
+                    <button id="button_done" name="action_done" string="Mark As Done" class="btn-primary" states="confirm"
+                            type="object"/>
+                    <button id="button_draft" name="action_draft" string="Set To Draft" class="btn-primary"
+                            states="cancel" type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" states="draft,done,confirm"
+                            confirm="Are you sure that you need to cancel ?"
+                            type="object"/>
+                    <button name="action_url" string="Open URL" class="btn-primary"
+                            type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"/>
+                </header> -->
+                <!-- <sheet>
+                    
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="pay_per_game"/>
+                            <field name="sport_type" widget="many2many_tags"/>
+                            <field name="level"/>
+                            <field name="crow_size"/>
+                            <field name="location"/>
+                        </group>
+                        <group>
+                           
+                            <field name="date_of_event"/>
+                            <field name="start_time"/>
+                            <field name="end_time"/>
+                            <field name="expected_game"/>
+                            <field name="excepted_court"/>
+                            
+                        </group>
+                    </group>
+                    <newlines/> -->
+                    <!-- <separator string="Event Details" colspan="4" /> -->
+<!--                     
+                    <notebook>  
+                        <page string="Event Details" >
+                            <field name="schedule_id">
+                                    <tree editable="botton" >
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="location"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="start_date"/>
+                                            </group>
+                                            <group>
+                                                <field name="end_date"/>
+                                            </group>
+                                            <group>
+                                                <field name="location"/>
+                                            </group>
+                                        </group>
+                                    
+                                    </form>
+                               
+                            </field>
+                        </page>
+                       
+                    </notebook>
+                </sheet>
+               
+            </form>
+        </field>
+    </record> -->
+
+
+   <record id="action_match_form" model="ir.actions.act_window">
+        <field name="name">Match</field>
+        <field name="res_model">match.match</field>
+        <field name="view_mode">tree,form</field>
+        
+    </record>
+    <record id="action_organization_form" model="ir.actions.act_window">
+        <field name="name">Organization</field>
+        <field name="res_model">organization.organization</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_draft': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Organization!
+            </p>
+        </field>
+    </record>
+   
+    <record id="action_event_form" model="ir.actions.act_window">
+        <field name="name">Events</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">event.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_draft': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Events !
+            </p>
+        </field>
+        
+    </record>
+    <record id="action_shedule_form" model="ir.actions.act_window">
+        <field name="name">Shedule</field>
+        <field name="res_model">posted.event.shedule</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_offical_book_form" model="ir.actions.act_window">
+        <field name="name">Offical books</field>
+        <field name="res_model">offical.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_configuration_form" model="ir.actions.act_window">
+        <field name="name">Setting</field>
+        <field name="res_model">configuration.model</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_sport_types_form" model="ir.actions.act_window">
+        <field name="name">Sport type</field>
+        <field name="res_model">sport.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_court_types_form" model="ir.actions.act_window">
+        <field name="name">Field types</field>
+        <field name="res_model">event.court.types</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_match_ref_requests" model="ir.actions.act_window">
+        <field name="name">Referee Match Request</field>
+        <field name="res_model">match.match.referee.requests</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_location_form" model="ir.actions.act_window">
+        <field name="name">Location</field>
+        <field name="res_model">location.location</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_team_form" model="ir.actions.act_window">
+        <field name="name">Teams</field>
+        <field name="res_model">team.team</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="action_ref_pref_form" model="ir.actions.act_window">
+        <field name="name">Preference Types</field>
+        <field name="res_model">referees.referees.preferences.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- <record id="action_sport_type_form" model="ir.actions.act_window">
+        <field name="name">Sport Types</field>
+        <field name="res_model">sport.type</field>
+        <field name="view_mode">tree,form</field>
+    </record> -->
+
+      <record id="action_referees_form" model="ir.actions.act_window">
+        <field name="name">Referees</field>
+        <field name="res_model">referees.referees</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+      <record id="action_fans_form" model="ir.actions.act_window">
+        <field name="name">Fans</field>
+        <field name="res_model">fans.fans</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+      <record id="action_coach_form" model="ir.actions.act_window">
+        <field name="name">Coach</field>
+        <field name="res_model">coach.coach</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+      <record id="action_court_form" model="ir.actions.act_window">
+        <field name="name">Court</field>
+        <field name="res_model">court.court</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+     <!-- Top menu item -->
+     <menuitem id="organization_main_menu" name="Organization" />
+     <menuitem
+         id="organization_menu"
+         name="Dashboard"
+         action="action_organization_form"
+         sequence="1"
+         parent="organization_main_menu"
+     />
+     <menuitem
+         id="event_menu"
+         name="Events"
+         action="action_event_form"
+         sequence="2"
+         parent="organization_main_menu"
+     />
+     <menuitem
+         id="match_menu"
+         name="Match"
+         action="action_match_form"
+         sequence="3"
+         parent="organization_main_menu"
+     />
+     <menuitem
+     id="officals_booked_menu"
+     name="Booked Officals"
+     action="action_offical_book_form"
+     sequence="4"
+     parent="organization_main_menu"
+    />
+    <menuitem
+     id="configuration_menu"
+     name="Configuration"
+     action="action_configuration_form"
+     sequence="8"
+     parent="organization_main_menu"
+ />
+ <menuitem
+     id="sport_type_menu"
+     name="Sport Type"
+     action="action_sport_types_form"
+     sequence="24"
+     parent="configuration_menu"
+    />
+    <menuitem
+        id="court_type_menu"
+        name="Field Types"
+        action="action_court_types_form"
+        sequence="25"
+        parent="configuration_menu"
+    />
+    <menuitem
+        id="match_ref_request_menu"
+        name="Referee Match Requests"
+        action="action_match_ref_requests"
+        sequence="29"
+        parent="configuration_menu"
+    />
+     <menuitem
+     id="coach_menu"
+     name="Coach"  
+     action="action_coach_form"
+     sequence="9"
+     parent="configuration_menu"
+    />
+    <menuitem
+     id="court_menu"
+     name="Court"  
+     action="action_court_form"
+     sequence="15"
+     parent="configuration_menu"
+    />
+    <menuitem
+     id="tems_menu"
+     name="Teams"
+     action="action_team_form"
+     sequence="1"
+     parent="configuration_menu"
+    />
+
+    <menuitem
+     id="tems_menu"
+     name="Preference Types"
+     action="action_ref_pref_form"
+     sequence="144"
+     parent="configuration_menu"
+    />
+    <menuitem
+    id="location_menu"
+    name="Location"
+    action="action_location_form"
+    sequence="25"
+    parent="configuration_menu"
+   />
+  
+   <menuitem
+    id="referee_menu"
+    name="Referees"
+    action="action_referees_form"
+    sequence="6"
+    parent="configuration_menu"
+   />
+    <menuitem
+    id="fans_menu"
+    name="Fans"
+    action="action_fans_form"
+    sequence="7"
+    parent="configuration_menu"
+   />
+  
+   <menuitem
+   id="setting_menu"
+   name="setting"
+   action="action_configuration_form"
+   sequence="35"
+   parent="configuration_menu"
+  />
+   
+
+    
+
+</odoo>

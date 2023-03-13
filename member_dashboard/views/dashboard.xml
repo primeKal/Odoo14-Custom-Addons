@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+
+  <record id="action_gender_graph" model="ir.actions.act_window">
+    <field name="name">action.gender.graph</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="members_custom.graphics_for_partners_1"/>
+  </record>
+
+  <record id="action_ethncity_graph" model="ir.actions.act_window">
+    <field name="name">action.ethnicity.graph</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="members_custom.graphics_for_partners_2"/>
+  </record>
+
+  <record id="action_employment_graph" model="ir.actions.act_window">
+    <field name="name">action.employment.graph</field>
+    <field name="res_model">res.partner</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="members_custom.graphics_for_partners_3"/>
+  </record>
+
+  <record id="action_complaint_graph" model="ir.actions.act_window">
+    <field name="name">action.complaint.graph</field>
+    <field name="res_model">member.complaint</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="members_custom.complaint_graph"/>
+  </record>
+
+  <record id="action_status_graph" model="ir.actions.act_window">
+    <field name="name">action.status.graph</field>
+    <field name="res_model">member.complaint</field>
+    <field name="view_mode">graph</field>
+    <field name="view_id" ref="members_custom.status_graph"/>
+  </record>
+
+  <record id="dashboard_views" model="ir.ui.view">
+    <field name="name">Dashboard Views</field>
+    <field name="model">board.board</field>
+    <field name="type">form</field>
+    <field name="arch" type="xml">
+      <form string="Dashboard">
+        <board style="1-1">
+          <column>
+            <action string="Gender Reports"
+                    name="%(action_gender_graph)d"/>
+            <action string="Ethnicity Report"
+                    name="%(action_ethncity_graph)d"/>
+            <action string="Employment Report"
+                    name="%(action_employment_graph)d"/>
+          </column>
+          <column>
+            <action string="Complaint Reports"
+                    name="%(action_complaint_graph)d"/>
+            <action string="Complaint Status Reports"
+                    name="%(action_status_graph)d"/>
+          </column>
+        </board>
+      </form>
+    </field>
+  </record>
+
+  <record id="member_dashboard" model="ir.actions.act_window">
+    <field name="name">Dashboard</field>
+    <field name="res_model">board.board</field>
+    <field name="view_mode">form</field>
+    <field name="usage">menu</field>
+    <field name="view_id" ref="dashboard_views"/>
+  </record>
+  
+   <menuitem id="dashboard_reports" name="Dashboard" parent="membership.menu_association" sequence="130" action="member_dashboard"/>
+
+</odoo>

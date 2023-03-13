@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="appointment_slot_search">
+            <field name="model">s2u.appointment.slot</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="user_id"/>
+                    <field name="day"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="appointment_slot_form_view">
+            <field name="model">s2u.appointment.slot</field>
+            <field name="arch" type="xml">
+                <form string="Appointment Slot">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="user_id"/>
+                                <field name="day"/>
+                                <field name="slot" widget="float_time"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="appointment_slot_tree_view">
+            <field name="model">s2u.appointment.slot</field>
+            <field name="arch" type="xml">
+                <tree string="Slots">
+                    <field name="user_id"/>
+                    <field name="day"/>
+                    <field name="slot" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+        <record id="category_python_action" model="ir.actions.server">
+            <field name="name">Category Accessories</field>
+            <field name="model_id" ref="s2u_online_appointment.model_s2u_appointment_slot"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = model.save_cred()
+            </field>
+        </record>
+        <menuitem id="category_python_action_menu"
+                  name="Google Meet"
+                  action="category_python_action"
+                  parent="menu_appointment"
+                  groups="website.group_website_designer"/>
+
+        <!--        <record id="action_make_testing" model="ir.actions.server">-->
+        <!--            <field name="name">Authorize</field>-->
+        <!--            <field name="condition">True</field>-->
+        <!--            <field name="type">ir.actions.server</field>-->
+        <!--            <field name="model_id" ref="s2u_online_appointment.model_s2u_appointment_slot"/>-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">self.save_cred(cr, uid, context.get('active_ids', []), context=context)</field>-->
+        <!--        </record>-->
+
+        <record model="ir.actions.act_window" id="appointment_slot_action">
+            <field name="name">Appointment Slots</field>
+            <field name="res_model">s2u.appointment.slot</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Appointment Slots" id="menu_appointment_slot"
+                  parent="menu_appointment" groups="website.group_website_designer"
+                  action="appointment_slot_action" sequence="10"/>
+        <!--        <menuitem id='menu_to_creds' name='AUthorize'-->
+        <!--                  sequence="100"-->
+        <!--                  parent="menu_appointment" groups="website.group_website_designer"-->
+        <!--                  action="action_make_testing"/>-->
+
+    </data>
+</odoo>

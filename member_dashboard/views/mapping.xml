@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<odoo>
+  <!-- This record will create an action to Mapping -->
+  <record id="mapping_form_action" model="ir.actions.act_window">
+    <field name="name">Mapping</field>
+    <field name="res_model">mentor.mapping</field>
+    <field name="view_mode">tree,form,graph</field>
+  </record>
+  
+  <record id="duration_form_action" model="ir.actions.act_window">
+    <field name="name">Duration</field>
+    <field name="res_model">mentor.duration</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+
+
+  <menuitem id="mapping_form_menu" name="Mentor Matching" parent="membership.menu_association" sequence="5" action="mapping_form_action"/>
+  <!-- <menuitem id="membership_reporting_list_view" name="Mentroship Reporting" parent="menu_report_membership" sequence="110" /> -->
+  <menuitem id="duration_form_menu" name="Mentore Duration" parent="membership.menu_marketing_config_association" sequence="110" action="duration_form_action"/>
+ 
+  <!-- This record will display types of mapping -->
+  <record id="mapping_form_tree" model="ir.ui.view">
+    <field name="name">mentor.mapping.tree</field>
+    <field name="model">mentor.mapping</field>
+    <field name="arch" type="xml">
+      <tree decoration-danger="state == 'canceled'" decoration-success="state == 'approved'" decoration-info="state == 'waiting'">
+        <field name="seq" />
+        <field name="mentor_id"/>
+        <field name="mentee_id"/>
+        <field name="date_from"/>
+        <field name="state"/>
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- This record will create the form view of mapping -->
+  <record id="view_mapping_form" model="ir.ui.view">
+    <field name="name">mentor.mapping.form</field>
+    <field name="model">mentor.mapping</field>
+    <!-- <field name="groups_id" eval="[(6,0,[ref('members_custom.member_group_complaint_management')])]"/> -->
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="mapping_approved" string="Approve" class="oe_highlight" type="object" states="new" />
+          <button name="mapping_rejected" string="Rejected" type="object" class="oe_highlight"
+                 />
+          
+         
+        <field name="state" widget="statusbar" statusbar_visible="new,waiting,approved,cancelled"/>
+      </header>
+        <sheet>
+          
+          
+          <div class="oe_title">
+            <h1>
+                <field name="seq" readonly="1"/>
+            </h1>
+        </div>
+          <group>
+            <group>
+              <field name="mentor_id" readonly="1"/>
+            </group>
+            <group>
+                <field name="mentee_id" readonly="1"/>
+              <!-- <field name="perpertrators" widget="many2many_tags" readonly="1"/> -->
+            </group>
+           </group>
+           <group>
+             <!-- <field name="circumstances" readonly="1"/> -->
+           </group>
+           <notebook>
+             <page string="Mapping Details" readonly="0">
+               <group>
+                 <group>
+                   <field name="handler" string="Approved By"/>
+                 </group>
+                 <group>
+                   <field name="date_approved" readonly="0"/>
+                   <field name="duration" readonly="0"/>
+                 </group>
+               </group>
+               <group>
+                 <group>
+                   <field name="conclusion_report" string="Mentoring Details" readonly="0"/>
+                 </group>
+               </group>
+               <!-- <group>
+                 <group>
+                   <button name="mapping_approved" string="Approve" type="object" icon="fa-check"/>
+                 </group>
+                 <group>
+                   <button name="mapping_rejected" string="Rejected" type="object" icon="fa-times"/>
+                 </group>
+               </group> -->
+             </page>
+           </notebook>
+         </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- This record will display graphs of mapping -->
+  <record id="mapping_graph" model="ir.ui.view">
+    <field name="name">mentor.mapping.graph</field>
+    <field name="model">mentor.mapping</field>
+    <field name="arch" type="xml">
+      <graph type="pie">
+        <field name="mentor_id"/>
+      </graph>
+    </field>
+  </record>
+
+
+  <!-- This record will display graphs of mapping -->
+  <record id="status_graph" model="ir.ui.view">
+    <field name="name">status.graph</field>
+    <field name="model">mentor.mapping</field>
+    <field name="arch" type="xml">
+      <graph>
+        <field name="state"/>
+      </graph>
+    </field>
+  </record>
+
+ 
+  <!-- This record will create a form view for duration -->
+  <record id="duration_form_tree" model="ir.ui.view">
+    <field name="name">mentor.duration.form.tree</field>
+    <field name="model">mentor.duration</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title">
+            <h1>
+                <field name="seq" readonly="1"/>
+            </h1>
+        </div>
+      
+          <group>
+            <field name="name"/>
+          
+          </group>
+          <group>
+          <group>
+            <field name="date_from" />
+          </group>
+          <group>
+            <field name="date_to" />
+          </group>
+        </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+</odoo>

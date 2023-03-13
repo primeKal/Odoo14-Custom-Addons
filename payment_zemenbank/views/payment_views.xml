@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+
+    <record id="acquirer_form_zemenbank" model="ir.ui.view">
+        <field name="name">acquirer.form.zemenbank</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <!-- <xpath expr='//group[@name="acquirer"]' position='inside'> -->
+            <xpath expr="//page[@name='acquirer_credentials']" position="inside">
+                <group>
+                    <field name="zemenbank_email_account" attrs="{'required':[ ('provider', '=', 'zemenbank')]}"/>
+                    <field name="zemenbank_seller_account"/>
+                    <field name="zemen_secret_key" attrs="{'required':[ ('provider', '=', 'zemenbank')]}" password="True"/>
+                    <field name="zemen_publishable_key" attrs="{'required':[ ('provider', '=', 'zemenbank')]}" password="True"/>
+                    <a colspan="2" href="https://www.zemenbank.com" target="_blank">How to configure your zemenbank account?</a>
+                </group>
+            </xpath>
+        </field>
+    </record>
+       <!-- <record id="payment_acquirer_view_form_inherit_zemenbank" model="ir.ui.view">
+        <field name="name">payment.acquirer.view.form.inherit.zemenbank</field>
+        <field name="model">payment.acquirer</field>
+        <field name="inherit_id" ref="payment.acquirer_form"/>
+        <field name="arch" type="xml">
+            <page name="acquirer_credentials" position="attributes">
+                <attribute name="attrs">{'invisible': [('provider', 'in', ['manual', 'zemenbank'])]}</attribute>
+            </page>
+            <field name="pre_msg" position="attributes">
+                <attribute name="attrs">{'invisible': [('provider', '=', 'zemenbank')]}</attribute>
+            </field>
+            <field name="done_msg" position="attributes">
+                <attribute name="attrs">{'invisible': [('provider', '=', 'zemenbank')]}</attribute>
+            </field>
+            <field name="cancel_msg" position="attributes">
+                <attribute name="attrs">{'invisible': [('provider', '=', 'zemenbank')]}</attribute>
+            </field>
+        </field>
+    </record>
+    -->
+</odoo>

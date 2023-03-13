@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_match_ref_ref_request" model="ir.ui.view">
+        <field name="name">match.match.referee.requests.tree</field>
+        <field name="model">match.match.referee.requests</field>
+        <field name="arch" type="xml">
+            <tree string="Match">
+                <field name="referee_id"/>
+                <field name="match_id"/>
+                <field name="status"/>
+                <field name="is_declined" optional="show"/>               
+            </tree>
+        </field>
+
+    </record>
+
+    <record id="view_match_form" model="ir.ui.view">
+        <field name="name">match.match.referee.requests.form</field>
+        <field name="model">match.match.referee.requests</field>
+        <field name="arch" type="xml">
+         <form string="Match Referee Requests">
+            <sheet>
+                <group>
+                    <field name="referee_id"/>
+                    <field name="match_id"/>
+                    <field name="status"/>
+                    <field name="is_declined" optional="show"/>  
+                </group>
+            </sheet>
+           </form>
+        </field>
+    </record>
+
+    <record id="action_match_ref_requests" model="ir.actions.act_window">
+        <field name="name">Referee Match Request</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">match.match.referee.requests</field>
+        <field name="view_mode">tree,form</field> 
+    </record>
+
+    <record id="view_match_tree" model="ir.ui.view">
+        <field name="name">match.match.tree</field>
+        <field name="model">match.match</field>
+        <field name="arch" type="xml">
+            <tree string="Match">
+                <field name="seq" />
+                <field name="name"/>
+                <field name="state"/>
+                <field name="team_1"/>
+                <field name="team_2"/>
+                <!-- <field name="referees"/> -->
+                <!-- <field name="rules"/> -->
+                <field name="uniform"/>
+                <!-- <field name="vet"/> -->
+                <field name="event_id" optional="show"/>
+                 <!-- <field name="location_id" optional="show"/> -->
+                 <field name="date_of_event" optional="show"/>
+                 <field name="start_date_time" optional="show"/>
+                 <field name="end_date_time" optional="show"/>
+               
+            </tree>
+        </field>
+    </record> 
+    <record id="view_match_form" model="ir.ui.view">
+        <field name="name">match.match.form</field>
+        <field name="model">match.match</field>
+        <field name="arch" type="xml">
+           <form string="Match">
+            <header>
+                <button id="button_start" name="action_start" string="Start" class="btn-primary" states="ready"
+                        confirm="Are you sure that you need to Post The Event ?"
+                        type="object"/>
+                <button id="button_end" name="action_end" string="End" class="btn-secondary" states="ready"
+                        confirm="Are you sure that you need to Post The Event ?"
+                        type="object"/>
+                
+                <field name="state" widget="statusbar" statusbar_visible="ready,start,end"/>
+            </header>
+            <sheet>
+               <div class="oe_title">
+                    <h1>
+                        <field name="seq" readonly="1"/>
+                    </h1>
+                </div>
+                
+                <group>
+                    <group>
+                        <field name="name" />
+                        <field name="team_1" />
+                        <field name="team_2"/>
+                        <field name="event_id"/>
+                        <field name="uniform"/>
+                        <field name="sport_type"/>
+                        <field name="referees"/>
+                        <!-- <field name="rules" widget="many2many_tags"/> -->
+                        
+                    </group>
+                    <group>
+                       
+                        <!-- <field name="location_id" widget="many2many_tags"/> -->
+                        <field name="state"/>
+                        <field name="date_of_event"/>
+                        <field name="start_date_time"/>
+                        <field name="end_date_time"/>
+                        
+                    </group>
+                </group>
+                 <!-- <separator string="Rules Details" colspan="4" />
+                    <notebook>
+                        <page string="Event Details" name="event_details">
+                            <group>
+                                <field name="name"/>
+                            </group>
+                        </page>
+                        <page string="Sheduling" name="sheduling">
+                            <field name="schedule_id">
+                                <tree editable="bottom">
+                                     <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="location"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="start_date"/>
+                                        </group>
+                                        <group>
+                                            <field name="end_date"/>
+                                        </group>
+                                        <group>
+                                            <field name="location"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                       
+                    </notebook> -->
+                </sheet>
+           </form>
+       </field>
+   </record>
+    
+
+</odoo>

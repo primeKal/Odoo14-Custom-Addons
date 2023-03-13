@@ -1,0 +1,43 @@
+<odoo>
+    <record id="sale_form_non_standardsdfdsfsdf_inhirit" model="ir.ui.view">
+        <field name="name">Edited Calnder View</field>
+        <field name="model">calendar.event</field>
+        <field name="type">calendar</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_calendar"/>
+        <field name="arch" type="xml">
+            <xpath expr="//calendar" position="replace">
+                <calendar js_class="attendee_calendar" string="Meetings" date_start="start" date_stop="stop"
+                          date_delay="duration" all_day="allday" event_open_popup="true" event_limit="5"
+                          color="user_id">
+                    <field name="attendee_status"/>
+                    <field name="user_id" string="Responsible" filters="1" widget="many2one_avatar_user"/>
+                    <field name="partner_ids" widget="many2many_tags_avatar" write_model="calendar.contacts"
+                           write_field="partner_id" avatar_field="image_128"/>
+                    <field name="is_highlighted" invisible="1"/>
+                    <field name="description"/>
+                    <field name="privacy"/>
+                    <field name="meetingLink" widget="url"/>
+                    <field name="eventLink" widget="url"/>
+                    <!-- For recurrence update Dialog -->
+                    <field name="recurrency" invisible="1"/>
+                    <field name="recurrence_update" invisible="1"/>
+                </calendar>
+
+            </xpath>
+        </field>
+    </record>
+    <record id="message_wizard_form" model="ir.ui.view">
+        <field name="name">message.wizard.form</field>
+        <field name="model">message.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <p class="text-center">
+                    <field name="message" readonly="1"/>
+                </p>
+                <footer>
+                    <button name="action_ok" string="Ok" type="object" default_focus="1" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

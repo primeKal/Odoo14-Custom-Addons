@@ -1,0 +1,115 @@
+<odoo>
+    <record id="sales_incentive_tree" model="ir.ui.view">
+        <field name="name">Production Incentive</field>
+        <field name="model">mrp.incentive</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="work_operation"/>
+                <field name="percent"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+    <record id="sales_incentive_formmm" model="ir.ui.view">
+        <field name="name">Mrp Incentive</field>
+        <field name="model">mrp.incentive</field>
+        <field name="arch" type="xml">
+            <form string="Create Sales Incentive" version="14.0">
+                <header>
+                    <button class="oe_stat_button btn-secondary"
+                            states="Draft"
+                            type="object" name="giveIncentive"
+                            string="Incentive"/>
+
+                    <field name="state" widget="statusbar" clickable="True" statusbar_visible="Draft,Approved"></field>
+                </header>
+                <group>
+                    <group name="name">
+                        <label for="name"/>
+                        <div class="o_row" name="name">
+                            <field name="name" nolabel="1"/>
+                        </div>
+                    </group>
+                    <group name="work_operation">
+                        <label for="work_operation"/>
+                        <div class="o_row" name="start_date">
+                            <field name="work_operation" nolabel="1"/>
+                        </div>
+                    </group>
+                    <group name="start_date">
+                        <label for="start_date"/>
+                        <div class="o_row" name="start_date">
+                            <field name="start_date" nolabel="1"/>
+                        </div>
+                    </group>
+                    <group name="end_date">
+                        <label for="end_date"/>
+                        <div class="o_row" name="end_date">
+                            <field name="end_date" nolabel="1"/>
+                        </div>
+                    </group>
+                </group>
+                <label for="production_count">Previous Sales(In range)</label>
+                <group>
+                    <group name="production_count">
+                        <label for="production_count"/>
+                        <div class="o_row" name="production_count">
+                            <field name="production_count" nolabel="1"/>
+                        </div>
+                    </group>
+                    <group name="production_amount">
+                        <label for="production_amount"/>
+                        <div class="o_row" name="production_amount">
+                            <field name="production_amount" nolabel="1"/>
+                        </div>
+                    </group>
+                </group>
+                <group>
+                    <group name="target">
+                        <label for="target"/>
+                        <div class="o_row" name="target">
+                            <field name="target" nolabel="1"/>
+                            <span>$</span>
+                        </div>
+                    </group>
+                    <group name="percent">
+                        <label for="percent"/>
+                        <div class="o_row" name="percent">
+                            <field name="percent" nolabel="1"/>
+                            <span>%</span>
+                        </div>
+                    </group>
+                    <group name="paid_amount">
+                        <label for="paid_amount"/>
+                        <div class="o_row" name="paid_amount">
+                            <field name="paid_amount" nolabel="1"/>
+                            <span>$</span>
+                        </div>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+
+
+    <record id="mrp_incentive_action" model="ir.actions.act_window">
+        <field name="name">Mrp Incentive</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">mrp.incentive</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a Mrp Incentive
+            </p>
+        </field>
+    </record>
+    <menuitem
+            id="mrp_incentive)menu"
+            name="MRP Incentive"
+            parent="mrp.menu_mrp_configuration"
+            action="mrp_incentive.mrp_incentive_action"
+            sequence="10"/>
+
+</odoo>

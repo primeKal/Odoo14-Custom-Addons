@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+	<!-- Adds all assets in Odoo -->
+        <template id="assets_backend" name="custom_web assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+		<!--These links will be called when loading your Odoo -->
+                <link rel="stylesheet" href="/custom_web/static/src/css/customstyle.css"/>
+                <script type="text/javascript" src="/custom_web/static/src/js/custom.js"></script>
+            </xpath>
+        </template>
+    </data>
+
+</odoo>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meeting_kanban" model="ir.ui.view">
+        <field name="name">meeting.kanban</field>
+        <field name="model">meeting</field>
+        <field name="arch" type="xml">
+            <kanban create="false" class="oe_background_grey o_kanban_dashboard o_account_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="start"/>
+                <field name="end"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div class="oe_kanban_details">
+                                <strong class="o_kanban_record_title">
+                                   <h1> <field name="name"/> </h1>
+                                </strong>
+                                <div t-if="record.end.value">
+                                    Start Time:
+                                    <h3><t t-esc="record.start.value"/></h3>
+                                </div>
+                                <div t-if="record.end.value">
+                                    Ending Time:
+                                   <h3> <t t-esc="record.end.value"/> </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="meeting_calandar" model="ir.ui.view">
+        <field name="name">calendar.meeting</field>
+        <field name="model">meeting</field>
+        <field name="arch" type="xml">
+            <calendar string="Scheduled Meetings" date_start="start" color="create_uid" date_stop="end">
+                <field name="name"/>
+                <field name="create_uid"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <record id="meeting_tree" model="ir.ui.view">
+        <field name="name">Scheduled Meetings</field>
+        <field name="model">meeting</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Date"/>
+                <field name="start"/>
+                <field name="delay" string="Duration"/>
+                <field name="create_uid" string="Owner"/>
+                <field name="delay_type" string="Delay Type"/>
+                <field name="end" string="Ending"/>
+            </tree>
+        </field>
+    </record>
+    <record id="meeting_form" model="ir.ui.view">
+        <field name="name">Scheduled Meetings</field>
+        <field name="model">meeting</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name" string="Name"/>
+                        <field name="descri" string="Descritption"/>
+                        <field name="delay_type"/>
+
+                        <notebook>
+                            <page string="Schedule">
+                                <h2>Start Time</h2>
+                                <field name="start"/>
+                                <h2>Delay Time</h2>
+                                <field name="delay" string="From"/>
+                                <h2>End Time</h2>
+                                <field name="end"/>
+                            </page>
+                            <page string="Attendees">
+                                <field name="attendees"/>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_meeting" model="ir.actions.act_window">
+        <field name="name">Schedule Your Meetings Here</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">meeting</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No Scheduled Meetings
+            </p>
+        </field>
+    </record>
+    <!--    <record id="r_sms_search" model="ir.ui.view">-->
+    <!--        <field name="name">sms.s.search</field>-->
+    <!--        <field name="model">r.sms</field>-->
+    <!--        <field name="priority">1</field>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <search string="Search Sent Messages">-->
+    <!--                <field name="fr"/>-->
+    <!--                <field name="content"/>-->
+    <!--                <field name="partner_id"/>-->
+    <!--            </search>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+    <menuitem id="meeting_menu"
+              name="Meeting Room"
+              sequence="26"/>
+    <menuitem id="meeting_submenu"
+              parent="meeting_menu"
+              name="Schedule Meetings"
+              action="action_meeting"
+              sequence="20"/>
+
+
+</odoo>

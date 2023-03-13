@@ -1,0 +1,111 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_zemen
+# 
+# Translators:
+# Martin Trigaux, 2021
+# krnkris, 2021
+# Tamás Németh <ntomasz81@gmail.com>, 2021
+# Ákos Nagy <akos.nagy@oregional.hu>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~13.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-01 07:29+0000\n"
+"PO-Revision-Date: 2020-09-07 08:16+0000\n"
+"Last-Translator: Ákos Nagy <akos.nagy@oregional.hu>, 2021\n"
+"Language-Team: Hungarian (https://www.transifex.com/odoo/teams/41243/hu/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-zemen
+"Language: hu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid "; multiple order found"
+msgstr "; többszörös rendelést talált"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid "; no order found"
+msgstr "; nem talált rendelést"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid ""
+"<div>\n"
+"<h3>Please use the following zemen"
+"<h4>%(bank_title)s</h4>\n"
+"%(bank_accounts)s\n"
+"<h4>Communication</h4>\n"
+"<p>Please use the order name as communication reference.</p>\n"
+"</div>"
+msgstr ""
+"<div>\n"
+"<h3>Kérem használja következő utalási részleteket</h3>\n"
+"<h4>%(bank_title)s</h4>\n"
+"%(bank_accounts)s\n"
+"<h4>Kommunikáció</h4>\n"
+"<p>Kérem a régebbi név használatát kommunikáció hivatkozásként.</p>\n"
+"</div>"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid "Bank Account"
+msgstr "Bankszámla"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid "Bank Accounts"
+msgstr "Bankszámlák"
+
+#. module: payment_zemen
+#: model:ir.model.fields,field_description:payment_zemenacquirer__display_name
+#: model:ir.model.fields,field_description:payment_zementransaction__display_name
+msgid "Display Name"
+msgstr "Név megjelenítése"
+
+#. module: payment_zemen
+#: model:ir.model.fields,field_description:payment_zemenacquirer__id
+#: model:ir.model.fields,field_description:payment_zementransaction__id
+msgid "ID"
+msgstr "Azonosító"
+
+#. module: payment_zemen
+#: model:ir.model.fields,field_description:payment_zemenacquirer____last_update
+#: model:ir.model.fields,field_description:payment_zementransaction____last_update
+msgid "Last Modified on"
+msgstr "Legutóbb módosítva"
+
+#. module: payment_zemen
+#: model:ir.model.fields.selection,name:payment_zemenment_acquirer__provider__zemzemzemzemzemzemen
+msgid "Manual Payment"
+msgstr ""
+
+#. module: payment_zemen
+#: model:ir.model,name:payment_zemenacquirer
+msgid "Payment Acquirer"
+msgstr "Fizetési szolgáltató"
+
+#. module: payment_zemen
+#: model:ir.model,name:payment_zementransaction
+msgid "Payment Transaction"
+msgstr "Fizetési tranzakció"
+
+#. module: payment_zemen
+#: model:ir.model.fields,field_description:payment_zemenacquirer__provider
+msgid "Provider"
+msgstr "Szolgáltató"
+
+#. module: payment_zemen
+#: code:addons/payment_zemen.py:0
+#, python-format
+msgid "received data for reference %s"
+msgstr "fogadott adat ehhez a referenciához %s"

@@ -1,0 +1,13 @@
+<odoo>
+    <data noupdate="1">
+        <record id="payment_acquirer_atom" model="payment.acquirer">
+            <field name="name">Zemen Payment Gateway</field>
+            <field name="provider">zemen</field>
+            <field name="company_id" ref="base.main_company"/>
+<!--            <field name="image_128" type="base64" file="thawani_multi_copany/static/description/icon.png"/>-->
+            <field name="view_template_id" ref="zemen_form"/>
+            <field name="state">test</field>
+<!--            <field name="chapa_private_key">1234</field-->
+        </record>
+    </data>
+</odoo>

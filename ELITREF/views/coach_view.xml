@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Event tree and form View -->
+    <record id="view_choach_tree" model="ir.ui.view">
+        <field name="name">coach.coach.tree</field>
+        <field name="model">coach.coach</field>
+        <field name="arch" type="xml">
+            <tree string="coachs">
+                <field name="seq" />
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="phone"/>
+                <field name="organization"/>
+                <field name="age_group" optional="show"/>
+                 <!-- <field name="team" optional="show"/> -->
+                
+            </tree>
+        </field>
+    </record>
+
+
+
+
+  
+    <record id="action_coach_form" model="ir.actions.act_window">
+        <field name="name">Coach</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">coach.coach</field>
+        <field name="view_mode">tree,form</field>
+        
+    </record>
+  
+
+</odoo>

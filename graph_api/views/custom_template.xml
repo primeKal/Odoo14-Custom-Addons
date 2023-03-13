@@ -1,0 +1,12 @@
+ <odoo>
+  <data>
+ <template id="custom_snippets_web_snippets" inherit_id="website.snippets" name="Custom   Snippets">
+ <xpath expr="//div[@id='snippet_structure']"   position="inside">
+     <div class="o_panel_body">
+           <t t-snippet="graph_api.custom_snippets"
+                    t-thumbnail="/graph_api/static/src/img/snippets.png" />
+           </div>
+        </xpath>
+     </template>
+  </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="messages_page" name="Sale Details">
+      <t t-call="website.layout">        
+      <div class="oe_structure">            
+      <div class="container">                
+      <br />                
+      <center><h3>All Messages</h3></center><br />
+      <table class="table-striped table">
+      <thead style="font-size: 23px;">
+      <tr>
+      <h6><b><th>Subject</th>
+      <th>From</th>
+      <th>Date</th>
+      <th><b>Body</b></th>
+      </b></h6></tr></thead>
+      <tbody>
+      <t t-foreach="my_details" t-as="order">
+      <tr><td><span t-esc="order.subject" /></td>
+      <td><span t-esc="order.author_id.name" /></td>
+      <td><span t-esc="order.date" /></td>
+      <td><span t-esc="order.body" /></td>
+      </tr></t></tbody></table></div></div></t></template>
+
+
+</odoo>

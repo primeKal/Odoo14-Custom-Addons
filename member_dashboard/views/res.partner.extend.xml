@@ -1,0 +1,28 @@
+<odoo>
+    <record id="res_prtner_inherited_heder" model="ir.ui.view">
+        <field name="name">Res Partner Form</field>
+        <field name="model">res.partner</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+               <xpath expr="//form//sheet" position="inside">
+                <header>
+                    <button class="oe_stat_button btn-secondary"
+                            type="object" name="approve"
+                            string="Approve"/>
+                    <button class="oe_stat_button btn-secondary"
+                            type="object" name="decline"
+                            string="Remove Access"/>
+                    <field name="approved_acc" string='Approved'/>
+                </header>
+            </xpath>
+             <xpath expr="//field[@name='category_id']" position="after">
+                <field name="social_media" widget="url" string="Face Book"/>
+                <field name="instagram" widget="url"/>
+                <field name="twitter" widget="url"/>
+                <field name="linkedin" widget="url"/>
+    
+            </xpath>
+        </field>
+    </record>
+</odoo>

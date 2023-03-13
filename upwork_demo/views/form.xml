@@ -1,0 +1,55 @@
+<odoo>
+<!--    <record id="123456" model="ir.ui.view">-->
+<!--        <field name="name">Tempo</field>-->
+<!--        <field name="model">products.wiz.sms</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form class="o_form_document">-->
+<!--                <field name="product_id"/>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    <record id="123456" model="ir.actions.act_window">-->
+<!--        <field name="name">Tempo</field>-->
+<!--        <field name="type">ir.ui.view</field>-->
+<!--        <field name="res_model">products.wiz.sms</field>-->
+<!--        <field name="view_mode">kanban,tree,form</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="o_view_nocontent_smiling_face">-->
+<!--                Create a Fabric product-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+    <act_window id="launch_bankbook_wizard"
+            name="Select Products"
+            res_model="product.product"
+            view_mode="tree"
+            target="new"
+                binding_model="sale.order"
+            />
+    <!--    <act_window id="send_wiz"-->
+    <!--                binding_model="sale.order"-->
+    <!--                name="Request Balance"-->
+    <!--                res_model="products.wiz.sms"-->
+    <!--                view_mode="form"-->
+    <!--                target="new"/>-->
+    <record id="test_model_wizard_action" model="ir.actions.act_window">
+        <field name="name">Test Model Wizard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">products.wiz.sms</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="launch_bankbook_wizard"/>
+        <field name="target">new</field>
+    </record>
+    <record id="sale_form_non_standard_inhirit" model="ir.ui.view">
+        <field name="name">Non Standard Order Form</field>
+        <field name="model">sale.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+<!--                                <button name="create_wizard" string="Create Wizard" class="oe_highlight" type="object"/>-->
+                <button type="action"  class="oe_highlight" string="Search More 2" name="%(upwork_demo.launch_bankbook_wizard)d"></button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

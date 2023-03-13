@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ir_models_view_form22222" model="ir.ui.view">
+        <field name="name">custom.models.view.form</field>
+        <field name="model">aggrigator.transaction</field>
+        <field name="arch" type="xml">
+            <form string="Model">
+                <header>
+                   <field name="state" widget="statusbar" statusbar_visible="draft,pending,confiremed"/>
+                </header>
+                        <group>
+                            <field name="payer" string="Payment Model"/>
+                            <field name="trace_no" string="Company"/>
+                            <field name="type" string="Payment Type"/>
+                            <field name="to" string="To"/>
+                            <field name="amount" string="amount"/>
+                        </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ir_models_view_tree222" model="ir.ui.view">
+        <field name="name">custom.models.view.tree</field>
+        <field name="model">aggrigator.transaction</field>
+        <field name="arch" type="xml">
+            <tree string="Models">
+                <field name="id"/>
+                <field name="amount"/>
+                <field name="payer"/>
+                <field name="type"/>
+                <field name="trace_no"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="ir_call_payers_transaction" model="ir.actions.act_window">
+        <field name="name">Payment Types Transaction</field>
+        <field name="res_model">aggrigator.transaction</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="help" type="html">
+            <P>
+
+            </P>
+        </field>
+    </record>
+
+
+    <menuitem
+            id="models_menu222"
+            name="Transactions"
+            action="ir_call_payers_transaction"
+            groups="base.group_user"
+            parent="agrigator_menu"
+            sequence="13"/>
+</odoo>

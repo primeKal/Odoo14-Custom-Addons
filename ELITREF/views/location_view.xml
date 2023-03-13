@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+  <record id="view_location_tree" model="ir.ui.view">
+        <field name="name">location.location.tree</field>
+        <field name="model">location.location</field>
+        <field name="arch" type="xml">
+            <tree string="Location">
+                <field name="country"/>
+                <field name="state"/>
+                <field name="name"/>
+                 <!-- <field name="team" optional="show"/> -->
+                
+            </tree>
+        </field>
+    </record> 
+    
+   <record id="view_location_form" model="ir.ui.view">
+        <field name="name">location.location.form</field>
+        <field name="model">location.location</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    
+                    <group>
+                        <group>
+                            <field name="country"/>
+                            <field name="state"/>
+                            
+                        </group>
+                        <group>
+                           
+                            <field name="name"/>
+                           
+                        </group>
+                    </group>
+                    <newlines/>
+                  
+                </sheet>
+               
+            </form>
+        </field>
+    </record>
+
+
+    
+
+
+  
+    <record id="action_location_form" model="ir.actions.act_window">
+        <field name="name">Location</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">location.location</field>
+        <field name="view_mode">tree,form</field>
+        
+    </record>
+  
+
+</odoo>

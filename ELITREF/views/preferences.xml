@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Event tree and form View -->
+    <record id="view_ref_pref_tree" model="ir.ui.view">
+        <field name="name">referees.referees.preferences.type.tree</field>
+        <field name="model">referees.referees.preferences.type</field>
+        <field name="arch" type="xml">
+            <tree string="Preferences">
+               
+                <field name="name"/>
+                <field name="accepted_type"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ref_pref_form" model="ir.ui.view">
+        <field name="name">referees.referees.preferences.type.form</field>
+        <field name="model">referees.referees.preferences.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- <header>
+                    <button id="button_confirm" name="action_confirm" string="Confirm" class="btn-primary" states="draft"
+                            confirm="Are you sure that you need to confirm ?"
+                            type="object"/>
+                    <button id="button_done" name="action_done" string="Mark As Done" class="btn-primary" states="confirm"
+                            type="object"/>
+                    <button id="button_draft" name="action_draft" string="Set To Draft" class="btn-primary"
+                            states="cancel" type="object"/>
+                    <button id="button_cancel" name="action_cancel" string="Cancel" states="draft,done,confirm"
+                            confirm="Are you sure that you need to cancel ?"
+                            type="object"/>
+                    <button name="action_url" string="Open URL" class="btn-primary"
+                            type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done,confirm"/>
+                </header> -->
+                <sheet>
+                    
+                    <group>
+                        <field name="name"/>
+                        <field name="accepted_type"/>
+                    </group>
+                    <newlines/>
+                  
+                </sheet>
+               
+            </form>
+        </field>
+    </record>
+
+
+  
+    <record id="action_ref_pref_form" model="ir.actions.act_window">
+        <field name="name">Teams</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">referees.referees.preferences.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_draft': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your First Preference!
+            </p>
+        </field>
+        
+    </record>
+  
+
+</odoo>

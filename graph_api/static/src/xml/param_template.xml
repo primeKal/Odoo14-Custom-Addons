@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<odoo>-->
+<templates xml:space="preserve">
+    <t t-name="graph_api.ParamTemplate">
+        <h5 style="text-align:center;">Graph</h5>
+        <label class="label" for="days">Select days :</label>
+        <select id="days_select" class="mr-2 sel">
+            <option value="30">Last 30 days</option>
+            <option value="60">Last 60 days</option>
+            <option value="365">Last 365 days</option>
+            <option value="1700">Last 1700 days</option>
+                    </select>
+        <label  class="label" for="frequency">Frequency :</label>
+        <select id="frequency_select" class="mr-2 sel">
+            <option value="daily">Daily</option>
+            <option value="weekly">Weekly</option>
+            <option value="monthly">Monthly</option>
+            <!--            <option value="quarterly">Quarterly</option>-->
+            <option value="yearly">Yearly</option>
+                    </select>
+        <label  class="label" for="model">Model :</label>
+        <select id="model_select" class="mr-2 sel" >
+            <t t-foreach="models" t-as="model">
+                <option t-att-value="model">
+                    <t t-esc="model"/>
+                </option>
+            </t>
+        </select>
+        <label  class="label" for="tooltip_data">Type</label>
+        <select id="tool" class="sel mr-2">
+            <option value="count">Count</option>
+            <option value="sum">Sum</option>
+<!--            <option value="unique">Unique</option>-->
+            <!-- <option value="sum">Sum</option> -->
+            <!-- <option value="count+sale">Count + Total Sale</option> -->
+                    </select>
+        <label  class="label" for="fields_label">Field Selector</label>
+        <select id="fields" class="sel mr-2">
+            <option value="none">None</option>
+        </select>
+    </t>
+</templates>
+        <!--    </odoo>-->

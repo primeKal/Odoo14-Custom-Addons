@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view1_partner_tree" model="ir.ui.view">
+    <field name="name">Membership</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="membership.membership_members_tree"/>
+   
+    <field name="arch" type="xml">
+     <!-- <tree string="Members"> -->
+        <xpath expr="//field[@name='membership_stop']" position="after">
+            <field name="member_type" optional="show"/>
+    
+        </xpath>
+        <!-- </tree> -->
+    </field>
+    </record>
+
+
+   
+
+   <!-- <record id="res_users_view_form" model="ir.ui.view">
+            <field name="name">res.users.form.inherit</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+            <form>
+                <xpath expr="//header" position="inside">
+                  
+                <button name="action_approve" attrs="{'invisible': ['|', ('state', 'in', ('draft','approve','done'))]}" string="Approve" type="object" class="oe_highlight" groups="base.group_user"/>
+                <button name="action_done"  attrs="{'invisible': ['|', ('state', 'in', ('draft','approve')))]}" string="Done" type="object" class="oe_highlight" groups="base.group_user"/>
+                    
+                
+            </xpath>
+        
+             <field name="membership_state" position="after">
+
+                <field name="state" widget="statusbar" statusbar_visible="draft,approve,done" />
+                </field>
+                <sheet>
+                    <group>
+                        
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>  -->
+
+</odoo>

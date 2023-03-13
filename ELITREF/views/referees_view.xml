@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+    <!-- Event tree and form View -->
+    <record id="view_referees_tree" model="ir.ui.view">
+        <field name="name">referees.referees.tree</field>
+        <field name="model">referees.referees</field>
+        <field name="arch" type="xml">
+            <tree string="Referees">
+                <field name="seq" />
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="phone"/>
+                <!-- <field name="phopreference_listne"/> -->
+                <field name="year_of_experience" optional="show"/>
+                 <field name="sport" optional="show"/>
+                <!-- <field name="location" optional="show"/> -->
+                <!-- <field name="event_type" optional="show"/>
+                <field name="team" optional="show"/>
+                <field name="court" optional="show"/> -->
+                <field name="states" optional="show"/>
+                <!-- <field name="picture" optional="show"/> -->
+                <field name="docs" optional="show"/>
+
+            </tree>
+        </field>
+    </record>
+    <record id="view_referees_form" model="ir.ui.view">
+        <field name="name">referees.referees.form</field>
+        <field name="model">referees.referees</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button id="button_approve" name="action_approve" string="Approve" class="btn-primary" states="draft"
+                            confirm="Are you sure that you need to Approve ?"
+                            type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved"/>
+                </header>
+                <sheet>
+                    <field name="picture" widget="image" class="oe_avatar"/>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="seq" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="user_id" readonly="1" force_save="1"/>
+                            <field name="location" readonly="1" force_save="1"/>
+                            <field name="phone"  force_save="1"/>
+                            <field name="country"  force_save="1"/>
+                            <field name="states"  force_save="1"/>
+                            <field name="state"  force_save="1"/>
+                            <field name="seq"  force_save="1"/>
+
+
+                        </group>
+                        <group>
+                            <field name="sport" readonly="1" force_save="1"/>
+                            <field name="docs" readonly="1" force_save="1"/>
+                            <!-- <field name="preference_list"  readonly="1" /> -->
+                            <!-- <field name="event_type" readonly="1" force_save="1"/>
+                            <field name="team" readonly="1" force_save="1"/> -->
+                            <field name="address" readonly="1" force_save="1"/>
+                            
+                        </group>
+                         <group>
+                            <field name="is_radius_set" readonly="1" force_save="1"/>
+                            <field name="radius" readonly="1" force_save="1"/>
+                            <field name="is_minimum_pay_per_game_set" readonly="1" force_save="1"/>
+                            <field name="minimum_pay_per_game" readonly="1" force_save="1"/>
+                            <field name="is_uniform_requirement_set" readonly="1" force_save="1"/>
+                            <field name="uniform_requirement" readonly="1" force_save="1"/>
+                            <field name="is_minimum_game_set" readonly="1" force_save="1"/>
+                            <field name="minimum_game" readonly="1" force_save="1"/>
+                            <field name="is_age_group_set" readonly="1" force_save="1"/>
+                            <field name="age_group" readonly="1" force_save="1"/>
+                            <field name="is_competition_level_set" readonly="1" force_save="1"/>
+                            <field name="competition_level" readonly="1" force_save="1"/>
+                            
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+  
+    <record id="action_referees_form" model="ir.actions.act_window">
+        <field name="name">Referees</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">referees.referees</field>
+        <field name="view_mode">tree,form</field>
+        
+    </record>
+    <!-- <record id="action_referees_form2" model="ir.actions.act_window">
+        <field name="name">Referee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">referees.referees</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_referees_form"/>
+        <field name="target">new</field>
+    </record> -->
+  
+
+</odoo>

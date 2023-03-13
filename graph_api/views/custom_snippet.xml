@@ -1,0 +1,41 @@
+<odoo>
+   <data>
+       <template id="custom_snippets" name="Graph Models">
+           <section class="s_hrjob bg-gray-lighter custom_snippet">
+                <div class="selDiv container">
+<!--                    <h2 style="text-align: center;" id="title">Chart Report</h2>-->
+                    <label for="days">Select days :</label>
+                    <select id="days" class="mr-2">
+                        <option value="30">Last 30 days</option>
+                        <option value="60">Last 60 days</option>
+                        <option value="365">Last 365 days</option>
+                        <option value="1700">Last 1700 days</option>
+                    </select>
+                    <label for="frequency">Frequency :</label>
+                    <select id="frequency" class="mr-2">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="quarterly">Quarterly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                    <label for="model">Model :</label>
+                    <select id="model" class="mr-2">
+                      <option selected="selected" value="default">Select here</option>
+                    </select>
+                    <label for="tooltip_data">Field Selector</label>
+                    <select id="tooltip_data">
+                        <option value="count">Count</option>
+                        <!-- <option value="sum">Sum</option> -->
+                        <!-- <option value="count+sale">Count + Total Sale</option> -->
+                    </select>
+                </div>
+               <div class="container">
+                  <div class="row">
+                  </div>
+                  <canvas id="chart" width="600" height="400"></canvas>
+               </div>
+           </section>
+       </template>
+   </data>
+</odoo>

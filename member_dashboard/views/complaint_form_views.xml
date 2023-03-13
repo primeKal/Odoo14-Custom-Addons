@@ -1,0 +1,289 @@
+<?xml version="1.0"?>
+<odoo>
+  <!-- This record will create an action to complaints -->
+  <record id="complaint_form_action" model="ir.actions.act_window">
+    <field name="name">Complaints</field>
+    <field name="res_model">member.complaint</field>
+    <field name="view_mode">tree,form,graph</field>
+  </record>
+
+  <!-- This record will create action to complaint category -->
+  <record id="action_for_complain_category" model="ir.actions.act_window">
+    <field name="name">Complaint Catgeorization</field>
+    <field name="res_model">complaint.category</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+   <record id="feedback_form_action" model="ir.actions.act_window">
+    <field name="name">Memberahip FeedBack</field>
+    <field name="res_model">report.report</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="complaint_form_menu" name="Complaint" parent="membership.menu_association" sequence="50" groups="member_dashboard.member_group_manager,member_dashboard.member_group_complaint_management"/>
+  <menuitem id="complaint_list_view" name="List of Complaints" parent="complaint_form_menu" sequence="1" action="complaint_form_action"/>
+  <menuitem id="complaint_category_view" name="Complaint Categories" parent="complaint_form_menu" sequence="2" action="action_for_complain_category"/>
+  <menuitem id="membership_feedback" name="Feedback" parent="membership.menu_association" sequence="58" groups="member_dashboard.member_group_manager,member_dashboard.member_group_complaint_management" action="feedback_form_action"/>
+
+  <!-- <menuitem name="Feedback" id="membership_feedback" parent="member_dashboard.menu_association" sequence="58" groups="member_dashboard.member_group_manager" action="feedback_form_action"/> -->
+
+  <!-- This record will display types of complaints -->
+  <record id="complaint_form_tree" model="ir.ui.view">
+    <field name="name">complaint.form.tree</field>
+    <field name="model">member.complaint</field>
+    <field name="arch" type="xml">
+      <tree decoration-danger="state == 'rejected'" decoration-success="state == 'resolved'" decoration-info="state == 'waiting'">
+        <field name="seq"/>
+        <field name="create_date"/>
+        <field name="complaint_category"/>
+        <field name="user_id" string="From"/>
+        <field name="victim_id"/>
+        <field name="state"/>
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- This record will create the form view of complaints -->
+  <record id="view_complaint_form" model="ir.ui.view">
+    <field name="name">view.complaint.form</field>
+    <field name="model">member.complaint</field>
+    <field name="groups_id" eval="[(6,0,[ref('member_dashboard.member_group_complaint_management')])]"/>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="complaint_resolved" string="Approve" class="oe_highlight" type="object" states="new" />
+          <button name="complaint_waiting" string="Waiting to Approve" type="object" class="btn btn-info"/>
+          <button name="complaint_rejected" string="Rejected" type="object" class="btn btn-danger"/>
+        <field name="state" widget="statusbar" statusbar_visible="new,waiting,approved,cancelled"/>
+      </header>
+        <sheet>
+          
+          <group>
+            <group>
+              <field name="subject" readonly="1"/>
+              <field name="complaint_category" readonly="1"/>
+            </group>
+            <group>
+              <field name="user_id" string="From" readonly="1"/>
+              <field name="victim_id" string="victim" readonly="1"/>
+              
+            </group>
+           </group>
+           <group>
+             <field name="circumstances" readonly="1"/>
+           </group>
+           <notebook>
+             <page string="Report Comment" readonly="0">
+               <group>
+                 <group>
+                   <field name="handler" widget="many2many_tags" readonly="0"/>
+                 </group>
+                 <group>
+                   <field name="date_of_remedy" readonly="0"/>
+                   <field name="duration_of_remedy" readonly="0"/>
+                 </group>
+               </group>
+               <group>
+                 <group>
+                   <field name="conclusion_report" readonly="0"/>
+                 </group>
+               </group>
+               
+             </page>
+           </notebook>
+         </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- This record will display graphs of complaints -->
+  <record id="complaint_graph" model="ir.ui.view">
+    <field name="name">complaint.graph</field>
+    <field name="model">member.complaint</field>
+    <field name="arch" type="xml">
+      <graph type="pie">
+        <field name="complaint_category"/>
+      </graph>
+    </field>
+  </record>
+
+
+  <!-- This record will display graphs of complaints -->
+  <record id="status_graph" model="ir.ui.view">
+    <field name="name">status.graph</field>
+    <field name="model">member.complaint</field>
+    <field name="arch" type="xml">
+      <graph>
+        <field name="state"/>
+      </graph>
+    </field>
+  </record>
+
+  <!-- This record will create a complaint section in members -->
+  <!-- <record model="ir.ui.view" id="view_partner_form">
+    <field name="name">res.partner.form.inherit</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+      <notebook position="inside">
+        <page string="Complaint">          
+          <field name="member_complaint_ids">
+            <form>
+              <sheet>
+                <header>
+                  <field name="state" widget="statusbar" statusbar_visible="new,waiting for approval,resolved,refused,cancelled"/>
+                </header>
+                <group>
+                  <group>
+                    <field name="subject"/>
+                    <field name="complaint_category"/>
+                  </group>
+                  <group>
+                    <field name="victim_id"/>
+                    <field name="perpertrators" widget="many2many_tags"/>
+                  </group>
+                </group>
+                <group>
+                  <field name="circumstances"/>
+                </group>
+                <notebook>
+                  <page string="Report Comment" readonly="1">
+                    <group>
+                      <group>
+                        <field name="handler" widget="many2many_tags"/>
+                      </group>
+                      <group>
+                        <field name="date_of_remedy"/>
+                        <field name="duration_of_remedy"/>
+                      </group>
+                    </group>
+                    <group>
+                      <field name="conclusion_report"/>
+                    </group>
+                  </page>
+                </notebook>
+              </sheet>
+            </form>
+          </field>
+        </page>
+      </notebook>
+    </field>
+  </record> -->
+
+  <!-- This record will create a form view for categories -->
+  <record id="category_form_tree" model="ir.ui.view">
+    <field name="name">category.form.tree</field>
+    <field name="model">complaint.category</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <div class="oe_title">
+            <h1>
+                <field name="seq" readonly="1"/>
+            </h1>
+        </div>
+          <group>
+            <field name="name"/>
+          
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+
+  <record id="report_form_tree" model="ir.ui.view">
+    <field name="name">report.form.tree</field>
+    <field name="model">report.report</field>
+    <field name="arch" type="xml">
+      <tree decoration-danger="state == 'rejected'" decoration-success="state == 'resolved'" decoration-info="state == 'waiting'">
+        <field name="seq"/>
+        <field name="checked_date"/>
+        <field name="user_id" string="Feedback From"/>
+        <field name="your_participation"  optional="hide"/>
+        <field name="how_did_you_find"  optional="hide"/>
+        <field name="state"/>
+
+       
+      </tree>
+    </field>
+  </record>
+
+
+  <!-- This record will create the form view of complaints -->
+  <record id="view_report_form" model="ir.ui.view">
+    <field name="name">view.report.form</field>
+    <field name="model">report.report</field>
+    <field name="groups_id" eval="[(6,0,[ref('member_dashboard.member_group_complaint_management')])]"/>
+    <field name="arch" type="xml">
+      <form>
+        <header>
+          <button name="feed_back_resolved" string="Checked" class="oe_highlight" type="object" states="new" />
+          <button name="feedback_waiting" string="Waiting to Checked" type="object" class="btn btn-info"/>
+          <button name="feed_back_rejected" string="Rejected" type="object" class="btn btn-danger"/>
+        <field name="state" widget="statusbar" statusbar_visible="new,waiting,approved,cancelled"/>
+      </header>
+        <sheet>
+          
+         
+            <group>
+            <group>
+              <field name="user_id" readonly="1"/>
+             
+            </group>
+            <group>
+              <field name="responsible_person" widget="many2many_tags"/>
+             
+            </group>
+            </group>
+             <group>
+             <field name="how_did_you_find" readonly="1"/>
+             </group>
+            
+             <group>
+             <field name="how_often_do_you" readonly="1"/>
+             </group>
+             <group>
+             <field name="your_participation" readonly="1"/>
+             </group>
+              <group>
+             <field name="rate_your_level" readonly="1"/>
+           </group>
+            
+            <group>
+             <field name="how_do_you_evaluate" readonly="1"/>
+           </group>
+           <group>
+             <field name="suggestions" readonly="1"/>
+           </group>
+          <!-- </group> -->
+         </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- This record will display graphs of complaints -->
+  <record id="report_graph" model="ir.ui.view">
+    <field name="name">report.graph</field>
+    <field name="model">report.report</field>
+    <field name="arch" type="xml">
+      <graph type="pie">
+        <field name="user_id"/>
+      </graph>
+    </field>
+  </record>
+
+
+  <!-- This record will display graphs of complaints -->
+  <record id="status_graph" model="ir.ui.view">
+    <field name="name">status.graph</field>
+    <field name="model">report.report</field>
+    <field name="arch" type="xml">
+      <graph>
+        <field name="state"/>
+      </graph>
+    </field>
+  </record>
+
+</odoo>

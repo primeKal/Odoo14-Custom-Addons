@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+payment_aggri.access_ir_payers,access_ir_models,payment_aggri.model_aggrigator_payer,base.group_user,1,1,1,1
+
+payment_aggri.access_ir_payers_tran,access_ir_models_tran,payment_aggri.model_aggrigator_transaction,base.group_user,1,1,1,1

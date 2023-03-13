@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="web_menu_form1" model="website.menu">
+        <field name="name">All Complaints</field>
+        <field name="url">/compliants</field>
+        <field name="parent_id" ref="website.main_menu"/>
+        <field name="sequence">109</field>
+
+    </record> 
+
+
+    <template id="compliant_list" name="Compliant List">
+      <t t-call="website.layout">
+          <div id="wrap">
+              <div class="oe_structure">
+                
+                  <div class="container"> 
+                 
+                     
+               </div>   
+              </div>
+          </div>
+      </t>
+      
+  </template>
+
+
+</odoo>

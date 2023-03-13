@@ -1,0 +1,15 @@
+<odoo>
+    <record id="ir_cron_auto_check_meeting_time" model="ir.cron">
+        <field name="name">Check meeting Time</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="numbercall">-1</field>
+        <field name="nextcall"
+               eval="(DateTime.now() + timedelta(minutes=4)).strftime('%Y-%m-%d %H:%M:%S')"/>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_meeting"/>
+        <field name="code">model.check_all_meetings()</field>
+        <field name="state">code</field>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

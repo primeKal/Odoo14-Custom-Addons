@@ -1,0 +1,47 @@
+<odoo>
+    <template id="report_student_id_card">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+                <style type="text/css">
+.title{
+margin-left: <t t-esc="o.var_1"/>;
+}
+.var_1{
+position: fixed;
+left: <t t-esc="o.check.first_location_x"/>px;
+top: <t t-esc="o.check.first_location_y"/>px
+}
+.var_2{
+position: fixed;
+left: <t t-esc="o.check.second_location_x"/>px;
+top: <t t-esc="o.check.second_location_y"/>px
+}
+.var_3{
+position: fixed;
+left: <t t-esc="o.check.third_location_x"/>px;
+top: <t t-esc="o.check.third_location_y"/>px
+}
+.var_4{
+position: fixed;
+left: <t t-esc="o.check.fourth_location_x"/>px;
+top: <t t-esc="o.check.fourth_location_y"/>px
+}
+</style>
+                    <span class="var_1" t-field="o.var_1"></span>
+                    <span class="var_2" t-field="o.var_2"></span>
+                    <span class="var_3" t-field="o.var_3"></span>
+                    <span class="var_4" t-field="o.var_4"></span>
+        </t>
+    </t>
+</template>
+
+    <record id="action_student_id_card" model="ir.actions.report">
+   <field name="name">Student ID Card</field>
+   <field name="model">check.wiz</field>
+   <field name="report_type">qweb-pdf</field>
+   <field name="report_name">dynamic_check_print.report_student_id_card</field>
+   <field name="report_file">dynamic_check_print.report_student_id_card</field>
+   <field name="print_report_name">'Student Card - %s' % (object.id)</field>
+   <field name="binding_model_id" ref="model_check_wiz"/>
+</record>
+</odoo>
